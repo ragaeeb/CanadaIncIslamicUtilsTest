@@ -1,0 +1,1 @@
+zip -j --password 55XXo@Z_11QHh@ $1.zip $1.db
