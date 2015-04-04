@@ -56,7 +56,7 @@ public class QuranArabicBoundaryTest
 	public void testCreateTable()
 	{
 		try {
-			m_instance.createTable();
+			m_instance.createTable(false);
 
 			PreparedStatement ps = m_instance.getConnection().prepareStatement("SELECT name FROM sqlite_master WHERE type='table'");
 			ResultSet rs = ps.executeQuery();
