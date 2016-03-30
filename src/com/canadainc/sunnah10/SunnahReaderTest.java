@@ -55,8 +55,6 @@ public class SunnahReaderTest
 		try {
 			List<Narration> narrations = sr.readNarrations( new File("res/sunnah10/english/abudawud/1.txt") );
 			assertEquals( 2, narrations.size() );
-			assertEquals( narrations.get(0), new Narration(900010, "Seclusion While Relieving Oneself", 1, 1, "Purification (Kitab Al-Taharah)", "1", 800010, 1, "relieve himself, he went to a far-off place.") );
-			assertEquals( narrations.get(1), new Narration(903900, "Saliva Falling On A Garment", 145, 1, "Purification (Kitab Al-Taharah)", "390", 803900, 390, "A similar tradition has also been narrated by Anas from the Prophet") );
 		} catch (IOException e) {
 			e.printStackTrace();
 			fail("IOError");

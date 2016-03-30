@@ -31,7 +31,7 @@ public class NarrationDecoratorTest {
 		Narration n = new Narration();
 		n.hadithNumber = "Introduction 1";
 		
-		NarrationDecorator nd = new NarrationDecorator();
+		NarrationCollector nd = new NarrationCollector();
 		nd.correctHadithNumber(n);
 		assertEquals( "1", n.hadithNumber );
 		
