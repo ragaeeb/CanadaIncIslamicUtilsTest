@@ -3,9 +3,12 @@
  */
 package com.canadainc.sunnah10;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
-import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -57,32 +60,7 @@ public class SunnahBooksTableTest
 			Connection c = DriverManager.getConnection("jdbc:sqlite:"+DB_PATH);
 			c.setAutoCommit(false);
 
-			SunnahBooksTable sct = new SunnahBooksTable( new SunnahPrimaryTable<String>()
-			{
-				@Override
-				public void setLanguage(String language) {}
-				
-				@Override
-				public void setConnection(Connection c) {}
-				
-				@Override
-				public String getTableName() {
-					return null;
-				}
-				
-				@Override
-				public void process(Collection<String> elements) throws SQLException {}
-				
-				@Override
-				public int getIdFor(String code)
-				{
-					if ( code.equals("bukhari") ) {
-						return 1;
-					} else {
-						return 2;
-					}
-				}
-			} );
+			SunnahBooksTable sct = new SunnahBooksTable( new StubSunnahCollectionsTable() );
 			sct.setLanguage("english");
 			sct.setConnection(c);
 
