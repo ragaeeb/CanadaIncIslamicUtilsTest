@@ -13,8 +13,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -72,7 +70,7 @@ public class SunnahBooksTableTest
 			HashSet<Book> adabBooks = new HashSet<Book>(2);
 			adabBooks.add( new Book(1, "First", "Cool") );
 			adabBooks.add( new Book(2, "Second") );
-			
+
 			Map<String, Set<Book>> collectionToBooks = new HashMap<String, Set<Book>>();
 			collectionToBooks.put("adab", adabBooks);
 			collectionToBooks.put("bukhari", bukhariBooks);
@@ -105,7 +103,7 @@ public class SunnahBooksTableTest
 			assertEquals( 2, rs.getInt("collection_id") );
 			assertEquals( 2, rs.getInt("book_id") );
 			assertNull( rs.getString("transliteration") );
-			
+
 			assertFalse( rs.next() );
 
 			rs.close();

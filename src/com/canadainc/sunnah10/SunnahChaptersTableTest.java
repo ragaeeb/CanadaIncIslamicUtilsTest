@@ -3,9 +3,11 @@
  */
 package com.canadainc.sunnah10;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
-import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -25,7 +27,7 @@ import com.canadainc.islamicutils.io.DBUtils;
 public class SunnahChaptersTableTest
 {
 	private static final String DB_PATH = "res/sunnah10/sunnah10_chapters.db";
-	
+
 	/**
 	 * @throws java.lang.Exception
 	 */

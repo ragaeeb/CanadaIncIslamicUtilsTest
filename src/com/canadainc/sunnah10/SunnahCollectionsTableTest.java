@@ -3,17 +3,20 @@
  */
 package com.canadainc.sunnah10;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
-import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.junit.*;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import com.canadainc.islamicutils.io.DBUtils;
 
@@ -73,7 +76,7 @@ public class SunnahCollectionsTableTest
 			fail("Failed!");
 		}
 	}
-	
+
 	/**
 	 * Test method for {@link com.canadainc.sunnah10.SunnahCollectionsTable#getTableName()}.
 	 */
