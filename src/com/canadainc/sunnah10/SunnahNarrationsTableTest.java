@@ -5,7 +5,6 @@ package com.canadainc.sunnah10;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -79,6 +78,7 @@ public class SunnahNarrationsTableTest
 			ResultSet rs = ps.executeQuery();
 
 			assertTrue( rs.next() );
+			assertEquals( 1, rs.getInt("id") );
 			assertEquals( 1, rs.getInt("chapter_id") );
 			assertEquals( 1, rs.getInt("collection_id") );
 			assertEquals( 1, rs.getInt("book_id") );
@@ -88,6 +88,7 @@ public class SunnahNarrationsTableTest
 			assertEquals( 5, rs.getInt("translator_id") );
 
 			assertTrue( rs.next() );
+			assertEquals( 2, rs.getInt("id") );
 			assertEquals( 2, rs.getInt("chapter_id") );
 			assertEquals( 2, rs.getInt("collection_id") );
 			assertEquals( 2, rs.getInt("book_id") );
@@ -98,6 +99,21 @@ public class SunnahNarrationsTableTest
 
 			assertFalse( rs.next() );
 
+			ps = c.prepareStatement("DELETE FROM "+sct.getTableName());
+			ps.execute();
+			
+			collectionToBooks.remove("adab");
+			sct.setLanguage("arabic");
+			sct.process(collectionToBooks);
+			
+			ps = c.prepareStatement("SELECT * FROM "+sct.getTableName()+" ORDER BY id");
+			rs = ps.executeQuery();
+
+			assertTrue( rs.next() );
+			assertEquals( 90, rs.getInt("id") );
+			
+			assertFalse( rs.next() );
+			
 			rs.close();
 			ps.close();
 			c.close();
@@ -135,6 +151,10 @@ public class SunnahNarrationsTableTest
 		}
 
 		@Override
-		public void process(Collection<Chapter> elements) throws SQLException {}	
+		public void process(Collection<Chapter> elements) throws SQLException {}
+
+		@Override
+		public void createIndices() throws SQLException {
+		}	
 	}
 }

@@ -28,7 +28,7 @@ public class SunnahReaderTest
 	@Test
 	public void testParseNarration()
 	{
-		SunnahReader sr = new SunnahReader("englishURN");
+		SunnahReader sr = new SunnahReader();
 
 		JSONObject jo = new JSONObject();
 		jo.put("matchingArabicURN", "234");
@@ -50,7 +50,7 @@ public class SunnahReaderTest
 	@Test
 	public void testReadNarrations()
 	{
-		SunnahReader sr = new SunnahReader("englishURN");
+		SunnahReader sr = new SunnahReader();
 
 		try {
 			List<Narration> narrations = sr.readNarrations( new File("res/sunnah10/english/abudawud/1.txt") );

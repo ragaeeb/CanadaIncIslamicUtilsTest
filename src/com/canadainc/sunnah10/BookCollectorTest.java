@@ -18,7 +18,7 @@ public class BookCollectorTest
 		narrations.add( new Narration(2, "Chapter2", 2, 1, "Intro", "1", 2, 2, "Body2") );
 		
 		BookCollector bc = new BookCollector();
-		bc.process(narrations, false, "abudawud");
+		bc.process(narrations, "english", "abudawud");
 		assertEquals( 1, bc.getCollected().size() );
 		
 		Map<String, Set<Book>> map = bc.getCollected();

@@ -19,15 +19,15 @@ public class GradeCollectorTest
 		n.grading = "Sahih";
 		narrations.add(n);
 
-		gc.process(narrations, false, "xyz");
+		gc.process(narrations, "english", "xyz");
 		assertTrue( gc.getCollected().isEmpty() );
-		gc.process(narrations, false, "abudawud");
+		gc.process(narrations, "english", "abudawud");
 
 		n = new Narration(2, "Chapter", 1, 1, "Intro", "1", 2, 1, "Body");
 		n.grading = "Daif";
 		narrations.clear();
 		narrations.add(n);
-		gc.process(narrations, false, "nasai");
+		gc.process(narrations, "english", "nasai");
 
 		Map<Integer, Grade> result = gc.getCollected();
 		assertEquals( new Grade(11,"Sahih"), result.get(1) );

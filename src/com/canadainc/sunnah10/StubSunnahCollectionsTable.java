@@ -29,4 +29,9 @@ final class StubSunnahCollectionsTable implements SunnahPrimaryTable<String>
 			return 2;
 		}
 	}
+
+	@Override
+	public void createIndices() throws SQLException
+	{
+	}
 }
