@@ -59,12 +59,12 @@ public class SunnahCollectionsTableTest
 			assertEquals( "Adab Al-Mufrad", rs.getString("name") );
 			assertEquals( 2, rs.getInt("id") );
 			assertEquals( 2, sct.getIdFor("adab") );
-			assertEquals( 1, rs.getInt("author") );
+			assertEquals( 109, rs.getInt("author") );
 
 			assertTrue( rs.next() );
 			assertEquals( 3, rs.getInt("id") );
 			assertEquals( 3, sct.getIdFor("bukhari") );
-			assertEquals( 1, rs.getInt("author") );
+			assertEquals( 109, rs.getInt("author") );
 
 			assertFalse( rs.next() );
 
