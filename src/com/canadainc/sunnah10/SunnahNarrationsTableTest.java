@@ -63,10 +63,10 @@ public class SunnahNarrationsTableTest
 			sct.setConnection(c);
 
 			ArrayList<Narration> bukhari = new ArrayList<Narration>();
-			bukhari.add( new Narration(1, "FirstChapter", 1, 1, "Introduction", "1", 90, 1, "Sample", 5) );
+			bukhari.add( new Narration(1, "FirstChapter", 1, 1, "Introduction", "1", 90, "Sample", 5) );
 
 			ArrayList<Narration> adab = new ArrayList<Narration>();
-			adab.add( new Narration(2, "LastChapter", 2, 2, "Conclusion", "2", 91, 2, "Something") );
+			adab.add( new Narration(2, "LastChapter", 2, 2, "Conclusion", "2", 91, "Something") );
 
 			Map<String, Collection<Narration>> collectionToBooks = new HashMap<String, Collection<Narration>>();
 			collectionToBooks.put("adab", adab);
@@ -82,7 +82,7 @@ public class SunnahNarrationsTableTest
 			assertEquals( 1, rs.getInt("chapter_id") );
 			assertEquals( 1, rs.getInt("collection_id") );
 			assertEquals( 1, rs.getInt("book_id") );
-			assertEquals( 1, rs.getInt("in_book_number") );
+			assertEquals( 90, rs.getInt("in_book_number") );
 			assertEquals( "1", rs.getString("hadith_number") );
 			assertEquals( "Sample", rs.getString("body") );
 			assertEquals( 5, rs.getInt("translator_id") );
@@ -92,7 +92,7 @@ public class SunnahNarrationsTableTest
 			assertEquals( 2, rs.getInt("chapter_id") );
 			assertEquals( 2, rs.getInt("collection_id") );
 			assertEquals( 2, rs.getInt("book_id") );
-			assertEquals( 2, rs.getInt("in_book_number") );
+			assertEquals( 91, rs.getInt("in_book_number") );
 			assertEquals( "2", rs.getString("hadith_number") );
 			assertEquals( "Something", rs.getString("body") );
 			assertEquals( 0, rs.getInt("translator_id") );
@@ -110,7 +110,7 @@ public class SunnahNarrationsTableTest
 			rs = ps.executeQuery();
 
 			assertTrue( rs.next() );
-			assertEquals( 90, rs.getInt("id") );
+			assertEquals( 1, rs.getInt("id") );
 			
 			assertFalse( rs.next() );
 			

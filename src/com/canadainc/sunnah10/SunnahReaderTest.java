@@ -42,7 +42,7 @@ public class SunnahReaderTest
 		jo.put("hadithText", "Hello");
 
 		Narration n = sr.parseNarration(jo);
-		Narration n1 = new Narration(234,"babName", 111, 11, "bookName", "number", 66, 777, "Hello");
+		Narration n1 = new Narration(234,"babName", 111, 11, "bookName", "number", 777, "Hello");
 		assertEquals(n, n1);
 	}
 

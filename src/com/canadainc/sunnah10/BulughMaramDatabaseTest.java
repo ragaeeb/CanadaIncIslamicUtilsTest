@@ -37,9 +37,9 @@ public class BulughMaramDatabaseTest
 			bmd.close();
 
 			assertEquals( 3, narrations.size() );
-			assertEquals( new Narration(0, "F", 1, 2, "Q", "128", 2102001, 1, "X"), narrations.get(0) );
-			assertEquals( new Narration(0, null, 1, 2, "Q", "128", 2102002, 2, "Y"), narrations.get(1) );
-			assertEquals( new Narration(0, null, 1, 7, "R", "606", 2110004, 1, "A"), narrations.get(2) );
+			assertEquals( new Narration(2102001, "F", 1, 2, "Q", "128", 1, "X"), narrations.get(0) );
+			assertEquals( new Narration(2102002, null, 1, 2, "Q", "128", 2, "Y"), narrations.get(1) );
+			assertEquals( new Narration(2110004, null, 1, 7, "R", "606", 1, "A"), narrations.get(2) );
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -60,9 +60,9 @@ public class BulughMaramDatabaseTest
 			bmd.close();
 
 			assertEquals( 3, narrations.size() );
-			assertEquals( new Narration(2102001, "The times of prayer", 1, 2, "Prayer", "163", 2102001, 1, "Sunrise"), narrations.get(0) );
-			assertEquals( new Narration(2102002, "The times of prayer", 1, 2, "Prayer", "164", 2102002, 2, "Muslim"), narrations.get(1) );
-			assertEquals( new Narration(2110004, "Conditions of Business Transactions and Those which are Forbidden", 1, 7, "Business Transactions", "802", 2110004, 1, "Halal"), narrations.get(2) );
+			assertEquals( new Narration(2102001, "The times of prayer", 1, 2, "Prayer", "163", 1, "Sunrise"), narrations.get(0) );
+			assertEquals( new Narration(2102002, "The times of prayer", 1, 2, "Prayer", "164", 2, "Muslim"), narrations.get(1) );
+			assertEquals( new Narration(2110004, "Conditions of Business Transactions and Those which are Forbidden", 1, 7, "Business Transactions", "802", 1, "Halal"), narrations.get(2) );
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

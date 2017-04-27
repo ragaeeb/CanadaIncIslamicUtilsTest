@@ -15,22 +15,22 @@ public class GradeCollectorTest
 		GradeCollector gc = new GradeCollector();
 
 		ArrayList<Narration> narrations = new ArrayList<Narration>();
-		Narration n = new Narration(1, "Chapter", 1, 1, "Intro", "1", 1, 1, "Body");
+		Narration n = new Narration(1, "Chapter", 1, 1, "Intro", "1", 1, "Body");
 		n.grading = "Sahih";
 		narrations.add(n);
 
 		gc.process(narrations, "english", "xyz");
 		assertTrue( gc.getCollected().isEmpty() );
-		gc.process(narrations, "english", "abudawud");
+		gc.process(narrations, "english", "adab");
 
-		n = new Narration(2, "Chapter", 1, 1, "Intro", "1", 2, 1, "Body");
+		n = new Narration(2, "Chapter", 1, 1, "Intro", "1", 1, "Body");
 		n.grading = "Daif";
 		narrations.clear();
 		narrations.add(n);
-		gc.process(narrations, "english", "nasai");
+		gc.process(narrations, "english", "adab");
 
 		Map<Integer, Grade> result = gc.getCollected();
 		assertEquals( new Grade(11,"Sahih"), result.get(1) );
-		assertEquals( new Grade(-1,"Daif"), result.get(2) );
+		assertEquals( new Grade(11,"Daif"), result.get(2) );
 	}
 }

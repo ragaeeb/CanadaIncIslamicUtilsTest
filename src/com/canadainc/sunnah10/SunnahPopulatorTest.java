@@ -3,13 +3,13 @@
  */
 package com.canadainc.sunnah10;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
-import java.io.File;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -41,14 +41,16 @@ public class SunnahPopulatorTest
 	}
 
 	/**
-	 * Test method for {@link com.canadainc.sunnah10.SunnahPopulator#process()}.
+	 * Test method for {@link com.canadainc.sunnah10.SunnahPopulator#loadData()}.
 	 */
 	@Test
 	public void testProcess()
 	{
 		try {
 			SunnahPopulator sp = new SunnahPopulator("english", "res/sunnah10");
-			sp.process();
+			sp.loadData();
+			sp.processAutoGrades();
+			sp.processDatabase();
 			
 			PreparedStatement ps = sp.getConnection().prepareStatement("SELECT * FROM collections ORDER BY id");
 			ResultSet rs = ps.executeQuery();

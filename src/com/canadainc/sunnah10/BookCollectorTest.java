@@ -14,8 +14,8 @@ public class BookCollectorTest
 	public void testProcess()
 	{
 		ArrayList<Narration> narrations = new ArrayList<Narration>();
-		narrations.add( new Narration(1, "Chapter", 1, 1, "Intro", "1", 1, 1, "Body") );
-		narrations.add( new Narration(2, "Chapter2", 2, 1, "Intro", "1", 2, 2, "Body2") );
+		narrations.add( new Narration(1, "Chapter", 1, 1, "Intro", "1", 1, "Body") );
+		narrations.add( new Narration(2, "Chapter2", 2, 1, "Intro", "1", 2, "Body2") );
 		
 		BookCollector bc = new BookCollector();
 		bc.process(narrations, "english", "abudawud");

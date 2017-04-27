@@ -70,7 +70,7 @@ public class SunnahDatabaseBoundaryTest
 			grades.put(1, new Grade(1, "Sahih"));
 
 			ArrayList<Narration> bukhari = new ArrayList<Narration>();
-			bukhari.add( new Narration(1, "FirstChapter", 1, 1, "Introduction", "1", 90, 1, "Sample", 5) );
+			bukhari.add( new Narration(1, "FirstChapter", 1, 1, "Introduction", "1", 90, "Sample", 5) );
 			Map<String, Collection<Narration>> collectionToNarrations = new HashMap<String, Collection<Narration>>();
 			collectionToNarrations.put("bukhari", bukhari);
 
