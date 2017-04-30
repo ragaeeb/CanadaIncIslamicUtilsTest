@@ -1,4 +1,4 @@
-package com.canadainc.sunnah10;
+package com.canadainc.sunnah10.shamela;
 
 import static org.junit.Assert.*;
 
@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 import com.canadainc.islamicutils.io.ShamelaReader;
+import com.canadainc.sunnah10.Narration;
+import com.canadainc.sunnah10.Tahqeeq;
+import com.canadainc.sunnah10.shamela.ShamelaSunanReader;
 
 public class ShamelaSunanReaderTest
 {
