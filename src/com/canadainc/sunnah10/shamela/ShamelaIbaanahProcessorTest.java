@@ -9,7 +9,7 @@ public class ShamelaIbaanahProcessorTest
 	@Test
 	public void testProcess() throws IOException
 	{
-		ShamelaIbaanahProcessor s = new ShamelaIbaanahProcessor();
+		ShamelaProcessor s = new ShamelaIbaanahProcessor();
 		
 		ShamelaTestUtils.loadAndAssertSize("ibaanah/0005.txt", s, 1);
 		ShamelaTestUtils.assertNarration(s.getNarrations().get(0), 1, null,

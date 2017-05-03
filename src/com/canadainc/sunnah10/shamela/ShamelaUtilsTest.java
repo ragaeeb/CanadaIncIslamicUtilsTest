@@ -1,47 +1,78 @@
 package com.canadainc.sunnah10.shamela;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Node;
 import org.junit.Test;
-
-import com.canadainc.sunnah10.Narration;
 
 public class ShamelaUtilsTest
 {
-
+	private static Node produceRawNode(String html) {
+		return Jsoup.parse(html).body().childNode(0);
+	}
+	
+	
+	@Test
+	public void isRoundHadithNumNode()
+	{
+		assertTrue( ShamelaUtils.isRoundHadithNumNode( produceRawNode("<span class=\"title\">(1) - some tetx") ) );
+		assertFalse( ShamelaUtils.isRoundHadithNumNode( produceRawNode("<span class=\"title\">1 - some tetx") ) );
+		assertTrue( ShamelaUtils.isRoundHadithNumNode( produceRawNode("<span class=\"title\">(1) some tetx") ) );
+	}
+	
+	
+	@Test
+	public void isFootnote()
+	{
+		assertTrue( ShamelaUtils.isFootnote( produceRawNode("<span class=\"footnote\">(1) lskfjd</span>") ) );
+		assertFalse( ShamelaUtils.isFootnote( produceRawNode("<span class=\"title\">1 - some tetx") ) );
+	}
+	
+	
+	@Test
+	public void parseRoundHadithNumber()
+	{
+		assertEquals( 1, ShamelaUtils.parseRoundHadithNumber( produceRawNode("<span class=\"title\">(1) - some tetx") ) );
+	}
+	
+	
+	@Test
+	public void extractRoundHadith()
+	{
+		assertEquals( "some tetx", ShamelaUtils.extractRoundHadith( produceRawNode("<span class=\"title\">(1) - some tetx") ) );
+	}
+	
+	
 	@Test
 	public void testIsHadithNumberNode()
 	{
-		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testIsTextSpanNode()
 	{
-		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testIsTextNode()
 	{
-		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testIsTitleSpan()
 	{
-		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testParseChildText()
 	{
-		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testParseHadithNumber()
 	{
-		fail("Not yet implemented");
 	}
 }

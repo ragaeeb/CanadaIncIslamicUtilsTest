@@ -26,6 +26,21 @@ public class ShamelaTestUtils
 	}
 	
 	
+	public static void assertCommentary(Narration n, int id, String grade, String[] commentaries, String... bodies)
+	{
+		assertEquals(id, n.id);
+		assertEquals(grade, n.grading);
+		
+		for (String commentary: commentaries) {
+			assertTrue( n.commentary.contains(commentary) );
+		}
+		
+		for (String body: bodies) {
+			assertTrue( n.text.contains(body) );
+		}
+	}
+	
+	
 	public static void assertInBookNumbers(ShamelaProcessor s, int ...values)
 	{
 		for (int i = 0; i < s.getNarrations().size(); i++) {
@@ -37,6 +52,7 @@ public class ShamelaTestUtils
 	public static void loadAndAssertSize(String file, ShamelaProcessor s, int size) throws IOException
 	{
 		JSONObject json = (JSONObject)JSONValue.parse( IOUtils.readFileUtf8( new File("/Users/rhaq/workspace/resources/shamela/arabic/"+file) ) );
+		s.preprocess(json);
 		s.process( Jsoup.parse( (String)json.get("content") ).body().childNodes(), json );
 		assertEquals( size, s.getNarrations().size() );
 	}
