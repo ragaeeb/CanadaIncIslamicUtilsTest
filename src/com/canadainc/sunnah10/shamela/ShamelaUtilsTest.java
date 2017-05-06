@@ -16,6 +16,14 @@ public class ShamelaUtilsTest
 	
 	
 	@Test
+	public void isHadithRangeNode()
+	{
+		assertTrue( ShamelaUtils.isHadithRangeNode( produceRawNode("<span class=\"red\">1375 - 1955</span>") ) );
+		assertFalse( ShamelaUtils.isHadithRangeNode( produceRawNode("<span class=\"red\">1375</span>") ) );
+	}
+	
+	
+	@Test
 	public void isRoundHadithNumNode()
 	{
 		assertTrue( ShamelaUtils.isRoundHadithNumNode( produceRawNode("<span class=\"title\">(1) - some tetx") ) );

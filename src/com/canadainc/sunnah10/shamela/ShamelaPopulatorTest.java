@@ -7,8 +7,6 @@ import java.sql.SQLException;
 
 import org.junit.Test;
 
-import com.canadainc.sunnah10.Narration;
-
 public class ShamelaPopulatorTest
 {
 	@Test
@@ -51,13 +49,22 @@ public class ShamelaPopulatorTest
 	public void testProcessIrwa() throws SQLException, IOException {
 		process("irwa", new ShamelaIrwaProcessor(), 2447);
 	}
+	
+	
+	@Test
+	public void testProcessDaif() throws SQLException, IOException
+	{
+		ShamelaPopulator sp = process("silsila_daif", new ShamelaSilsilaDaifProcessor(), 7141);
+		sp.validateGrades();
+	}
 
 
-	private void process(String folderName, ShamelaProcessor processor, int expectedSize) throws IOException
+	private ShamelaPopulator process(String folderName, ShamelaProcessor processor, int expectedSize) throws IOException
 	{
 		ShamelaPopulator sp = new ShamelaPopulator("/Users/rhaq/workspace/resources/shamela/arabic/"+folderName, processor);
 		sp.process();
 
 		assertEquals( expectedSize, processor.getNarrations().size() );
+		return sp;
 	}
 }

@@ -5,6 +5,8 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.canadainc.sunnah10.Narration;
+
 public class ShamelaDarimiProcessorTest
 {
 	private ShamelaProcessor s;
@@ -18,8 +20,6 @@ public class ShamelaDarimiProcessorTest
 	@Test
 	public void process1() throws IOException
 	{
-		ShamelaProcessor s = new ShamelaDarimiProcessor();
-		
 		ShamelaTestUtils.loadAndAssertSize("sunan_darimi/0003.txt", s, 1);
 		ShamelaTestUtils.assertNarration(s.getNarrations().get(0), 1, "إسناده صحيح والحديث متفق عليه",
 				"مُحَمَّدُ بْنُ يُوسُفَ،", "الْإِسْلَامِ، أُخِذَ بِالْأَوَّلِ ");
@@ -41,7 +41,8 @@ public class ShamelaDarimiProcessorTest
 	@Test
 	public void testChapter() throws IOException
 	{
-		ShamelaTestUtils.loadAndAssertSize("sunan_darimi/0744.txt", s, 0);
-		ShamelaTestUtils.loadAndAssertSize("sunan_darimi/1393.txt", s, 0);
+		s.getNarrations().add( new Narration(5) );
+		ShamelaTestUtils.loadAndAssertSize("sunan_darimi/0744.txt", s, 1);
+		ShamelaTestUtils.loadAndAssertSize("sunan_darimi/1393.txt", s, 1);
 	}
 }
