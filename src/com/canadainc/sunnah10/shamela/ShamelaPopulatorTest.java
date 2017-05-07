@@ -50,14 +50,30 @@ public class ShamelaPopulatorTest
 		process("irwa", new ShamelaIrwaProcessor(), 2447);
 	}
 	
-	
+
 	@Test
 	public void testProcessDaif() throws SQLException, IOException
 	{
 		ShamelaPopulator sp = process("silsila_daif", new ShamelaSilsilaDaifProcessor(), 7141);
 		sp.validateGrades();
 	}
+	
+	
+	@Test
+	public void testProcessAwaanah() throws SQLException, IOException
+	{
+		ShamelaPopulator sp = process("awaanah", new ShamelaAwaanahProcessor(), 8682);
+		sp.validateSequence();
+		//sp.validateGrades();
+	}
 
+	
+	@Test
+	public void testProcessJaami() throws SQLException, IOException
+	{
+		process("jaami", new ShamelaJaamiProcessor(), 8201);
+	}
+	
 
 	private ShamelaPopulator process(String folderName, ShamelaProcessor processor, int expectedSize) throws IOException
 	{
