@@ -7,8 +7,31 @@ import java.sql.SQLException;
 
 import org.junit.Test;
 
+import com.canadainc.sunnah10.shamela.albaani.ShamelaIrwaProcessor;
+import com.canadainc.sunnah10.shamela.albaani.ShamelaJaamiProcessor;
+import com.canadainc.sunnah10.shamela.albaani.ShamelaSilsilaDaifProcessor;
+import com.canadainc.sunnah10.shamela.albaani.ShamelaTargheebProcessor;
+import com.canadainc.sunnah10.shamela.mubarak.ShamelaJihadProcessor;
+import com.canadainc.sunnah10.shamela.mubarak.ShamelaMubarakZuhdProcessor;
+
 public class ShamelaPopulatorTest
 {
+	@Test
+	public void processBazzaar() throws SQLException, IOException {
+		ShamelaPopulator sp = process("bazzaar", new ShamelaBazzaarProcessor(), 10338);
+		sp.validateSequence();
+	}
+
+	
+	@Test
+	public void processTargheeb() throws SQLException, IOException {
+		ShamelaPopulator sp = process("targheeb", new ShamelaTargheebProcessor(), 3773);
+		sp.validateSequence();
+		sp.validateGrades();
+	}
+	
+	
+	
 	@Test
 	public void testProcessJihad() throws SQLException, IOException {
 		process("jihad", new ShamelaJihadProcessor(), 262);

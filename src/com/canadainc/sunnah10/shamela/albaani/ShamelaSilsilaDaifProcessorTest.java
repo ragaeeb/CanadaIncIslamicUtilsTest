@@ -1,4 +1,4 @@
-package com.canadainc.sunnah10.shamela;
+package com.canadainc.sunnah10.shamela.albaani;
 
 import static org.junit.Assert.assertFalse;
 
@@ -9,6 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.canadainc.sunnah10.Narration;
+import com.canadainc.sunnah10.shamela.ShamelaProcessor;
+import com.canadainc.sunnah10.shamela.ShamelaTestUtils;
+import com.canadainc.sunnah10.shamela.albaani.ShamelaSilsilaDaifProcessor;
 
 public class ShamelaSilsilaDaifProcessorTest
 {
