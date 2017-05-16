@@ -1,9 +1,12 @@
-package com.canadainc.sunnah10.shamela;
+package com.canadainc.sunnah10.processors.shamela;
 
 import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import com.canadainc.sunnah10.processors.shamela.ShamelaAwaanahProcessor;
+import com.canadainc.sunnah10.processors.shamela.ShamelaProcessor;
 
 public class ShamelaAwaanahProcessorTest
 {
@@ -57,7 +60,6 @@ public class ShamelaAwaanahProcessorTest
 		ShamelaTestUtils.loadAndAssertSize("awaanah/6480.txt", s, 1);
 		ShamelaTestUtils.loadAndAssertSize("awaanah/6481.txt", s, 1);
 		ShamelaTestUtils.assertNarration(s.getNarrations().get(0), 6965, null,
-				"وَكَانَتْ سَرَايَا رَسُولُ اللَّهِ صَلَّى اللهُ عَلَيْهِ",
 				"وَغَزْوَةُ زَيْدِ بْنِ حَارِثَةَ رَضِيَ اللَّهُ",
 				"عَنْهُ الْجَمُومَ مِنْ أَرْضِ بَنِي سُلَيْمٍ، وَغَزْوَةُ زَيْدِ بْنِ",
 				"بَنِي حَنِيفَةَ وَالْأَسْوَدُ بْنُ كَعْبٍ الْعَنْسِيُّ بِصَنْعَاءَ",

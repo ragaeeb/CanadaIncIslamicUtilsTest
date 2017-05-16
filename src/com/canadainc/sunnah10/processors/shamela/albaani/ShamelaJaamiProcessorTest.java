@@ -1,12 +1,13 @@
-package com.canadainc.sunnah10.shamela.albaani;
+package com.canadainc.sunnah10.processors.shamela.albaani;
 
 import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import com.canadainc.sunnah10.shamela.ShamelaProcessor;
-import com.canadainc.sunnah10.shamela.ShamelaTestUtils;
+import com.canadainc.sunnah10.processors.shamela.ShamelaProcessor;
+import com.canadainc.sunnah10.processors.shamela.ShamelaTestUtils;
+import com.canadainc.sunnah10.processors.shamela.albaani.ShamelaJaamiProcessor;
 
 public class ShamelaJaamiProcessorTest
 {

@@ -1,4 +1,4 @@
-package com.canadainc.sunnah10.shamela;
+package com.canadainc.sunnah10.processors.shamela;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -8,10 +8,10 @@ import java.io.IOException;
 
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import org.jsoup.Jsoup;
 
 import com.canadainc.common.io.IOUtils;
 import com.canadainc.sunnah10.Narration;
+import com.canadainc.sunnah10.processors.Processor;
 
 public class ShamelaTestUtils
 {
@@ -41,7 +41,7 @@ public class ShamelaTestUtils
 	}
 	
 	
-	public static void assertInBookNumbers(ShamelaProcessor s, int ...values)
+	public static void assertInBookNumbers(Processor s, int ...values)
 	{
 		for (int i = 0; i < s.getNarrations().size(); i++) {
 			assertEquals( values[i], s.getNarrations().get(i).inBookNumber );
@@ -49,11 +49,11 @@ public class ShamelaTestUtils
 	}
 	
 	
-	public static void loadAndAssertSize(String file, ShamelaProcessor s, int size) throws IOException
+	public static void loadAndAssertSize(String file, Processor s, int size) throws IOException
 	{
 		JSONObject json = (JSONObject)JSONValue.parse( IOUtils.readFileUtf8( new File("/Users/rhaq/workspace/resources/shamela/arabic/"+file) ) );
 		s.preprocess(json);
-		s.process( Jsoup.parse( (String)json.get("content") ).body().childNodes(), json );
+		s.process(json);
 		assertEquals( size, s.getNarrations().size() );
 	}
 }

@@ -1,4 +1,4 @@
-package com.canadainc.sunnah10.shamela.albaani;
+package com.canadainc.sunnah10.processors.shamela.albaani;
 
 import static org.junit.Assert.*;
 
@@ -10,9 +10,9 @@ import org.junit.Test;
 import com.canadainc.sunnah10.Book;
 import com.canadainc.sunnah10.Chapter;
 import com.canadainc.sunnah10.Narration;
-import com.canadainc.sunnah10.shamela.ShamelaProcessor;
-import com.canadainc.sunnah10.shamela.ShamelaTestUtils;
-import com.canadainc.sunnah10.shamela.albaani.ShamelaTargheebProcessor;
+import com.canadainc.sunnah10.processors.shamela.ShamelaProcessor;
+import com.canadainc.sunnah10.processors.shamela.ShamelaTestUtils;
+import com.canadainc.sunnah10.processors.shamela.albaani.ShamelaTargheebProcessor;
 
 public class ShamelaTargheebProcessorTest
 {

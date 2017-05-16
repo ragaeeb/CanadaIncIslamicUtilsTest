@@ -1,4 +1,4 @@
-package com.canadainc.sunnah10.shamela;
+package com.canadainc.sunnah10.processors.shamela;
 
 import java.io.IOException;
 
@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.canadainc.sunnah10.Narration;
+import com.canadainc.sunnah10.processors.shamela.ShamelaDarimiProcessor;
+import com.canadainc.sunnah10.processors.shamela.ShamelaProcessor;
 
 public class ShamelaDarimiProcessorTest
 {

@@ -1,4 +1,4 @@
-package com.canadainc.sunnah10.shamela;
+package com.canadainc.sunnah10.processors.shamela;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -12,6 +12,7 @@ import org.jsoup.nodes.Node;
 import org.junit.Test;
 
 import com.canadainc.sunnah10.Narration;
+import com.canadainc.sunnah10.processors.shamela.ShamelaUtils;
 
 public class ShamelaUtilsTest
 {
@@ -130,7 +131,7 @@ public class ShamelaUtilsTest
 	public void createNewNarrationDuplicate()
 	{
 		Narration n = new Narration();
-		n.text = "Test";
+		n.text = "بخير";
 
 		ArrayList<Narration> result = new ArrayList<>();
 		n = ShamelaUtils.createNewNarration(n, produceRawNode("<span class=\"red\">1375 -</span>"), result);
@@ -162,9 +163,13 @@ public class ShamelaUtilsTest
 	public void isHadithNumberValid()
 	{
 		ArrayList<Narration> result = new ArrayList<>();
+		
+		assertTrue( ShamelaUtils.isHadithNumberValid( produceRawNode("<span class=\"title\">123 - some tetx"), result, null ) );
+		
 		result.add( new Narration(3) );
 		
-		assertTrue( ShamelaUtils.isHadithNumberValid( produceRawNode("<span class=\"title\">123 - some tetx"), result ) );
-		assertFalse( ShamelaUtils.isHadithNumberValid( produceRawNode("<span class=\"title\">2 - some tetx"), result ) );
+		assertTrue( ShamelaUtils.isHadithNumberValid( produceRawNode("<span class=\"title\">123 - some tetx"), result, null ) );
+		assertFalse( ShamelaUtils.isHadithNumberValid( produceRawNode("<span class=\"title\">2 - some tetx"), result, null ) );
+		assertTrue( ShamelaUtils.isHadithNumberValid( produceRawNode("<span class=\"title\">2 - some tetx"), result, new Narration(1) ) );
 	}
 }

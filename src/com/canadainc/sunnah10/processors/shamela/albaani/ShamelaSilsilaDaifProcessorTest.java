@@ -1,4 +1,4 @@
-package com.canadainc.sunnah10.shamela.albaani;
+package com.canadainc.sunnah10.processors.shamela.albaani;
 
 import static org.junit.Assert.assertFalse;
 
@@ -9,9 +9,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.canadainc.sunnah10.Narration;
-import com.canadainc.sunnah10.shamela.ShamelaProcessor;
-import com.canadainc.sunnah10.shamela.ShamelaTestUtils;
-import com.canadainc.sunnah10.shamela.albaani.ShamelaSilsilaDaifProcessor;
+import com.canadainc.sunnah10.processors.shamela.ShamelaProcessor;
+import com.canadainc.sunnah10.processors.shamela.ShamelaTestUtils;
 
 public class ShamelaSilsilaDaifProcessorTest
 {
@@ -304,48 +303,18 @@ public class ShamelaSilsilaDaifProcessorTest
 				new String[]{"وقد أخرجه الطبراني في"},
 				"دونه فجاءته شهادة أن لا إله إلا");
 	}
-	
-	
+
+
 	@Test
-	public void testAbandoned1() throws IOException
+	public void testAbandoned() throws IOException
 	{
-		ShamelaTestUtils.loadAndAssertSize("silsila_daif/03875.txt", s, 1);
-		ShamelaTestUtils.assertCommentary(s.getNarrations().get(0), 2859, null,
-				new String[]{"وفهرس الكتاب (ص: 597"},
-				"");
+		ShamelaTestUtils.loadAndAssertSize("silsila_daif/03875.txt", s, 0);
+		ShamelaTestUtils.loadAndAssertSize("silsila_daif/04849.txt", s, 0);
+		ShamelaTestUtils.loadAndAssertSize("silsila_daif/04858.txt", s, 0);
+		ShamelaTestUtils.loadAndAssertSize("silsila_daif/05363.txt", s, 0);
 	}
-	
-	
-	@Test
-	public void testAbandoned2() throws IOException
-	{
-		ShamelaTestUtils.loadAndAssertSize("silsila_daif/04849.txt", s, 1);
-		ShamelaTestUtils.assertCommentary(s.getNarrations().get(0), 3615, null,
-				new String[]{") كشاهد حسن لحديث الترجمة"},
-				"");
-	}
-	
-	
-	@Test
-	public void testAbandoned3() throws IOException
-	{
-		ShamelaTestUtils.loadAndAssertSize("silsila_daif/04858.txt", s, 1);
-		ShamelaTestUtils.assertCommentary(s.getNarrations().get(0), 3622, null,
-				new String[]{"نقل إلى الصحيحة (3948"},
-				"");
-	}
-	
-	
-	@Test
-	public void testAbandoned4() throws IOException
-	{
-		ShamelaTestUtils.loadAndAssertSize("silsila_daif/05363.txt", s, 1);
-		ShamelaTestUtils.assertCommentary(s.getNarrations().get(0), 4022, null,
-				new String[]{"برقم (3286"},
-				"");
-	}
-	
-	
+
+
 	@Test
 	public void testStrangeVowel() throws IOException
 	{
@@ -362,8 +331,10 @@ public class ShamelaSilsilaDaifProcessorTest
 		JSONObject json = new JSONObject();
 		String[] rejected = new String[]{"6829", "6830", "6831"};
 
-		for (String r: rejected) {
+		for (String r: rejected)
+		{
 			json.put("pid", r);
+			json.put("content", "");
 			assertFalse( s.preprocess(json) );
 		}
 	}

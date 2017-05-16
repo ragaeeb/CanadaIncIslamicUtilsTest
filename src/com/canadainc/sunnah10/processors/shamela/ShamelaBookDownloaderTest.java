@@ -1,8 +1,10 @@
-package com.canadainc.sunnah10.shamela;
+package com.canadainc.sunnah10.processors.shamela;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import com.canadainc.sunnah10.processors.shamela.ShamelaBookDownloader;
 
 public class ShamelaBookDownloaderTest
 {

@@ -1,4 +1,4 @@
-package com.canadainc.sunnah10.shamela;
+package com.canadainc.sunnah10;
 
 import static org.junit.Assert.assertEquals;
 
@@ -7,12 +7,20 @@ import java.sql.SQLException;
 
 import org.junit.Test;
 
-import com.canadainc.sunnah10.shamela.albaani.ShamelaIrwaProcessor;
-import com.canadainc.sunnah10.shamela.albaani.ShamelaJaamiProcessor;
-import com.canadainc.sunnah10.shamela.albaani.ShamelaSilsilaDaifProcessor;
-import com.canadainc.sunnah10.shamela.albaani.ShamelaTargheebProcessor;
-import com.canadainc.sunnah10.shamela.mubarak.ShamelaJihadProcessor;
-import com.canadainc.sunnah10.shamela.mubarak.ShamelaMubarakZuhdProcessor;
+import com.canadainc.sunnah10.processors.shamela.ShamelaAwaanahProcessor;
+import com.canadainc.sunnah10.processors.shamela.ShamelaBazzaarProcessor;
+import com.canadainc.sunnah10.processors.shamela.ShamelaDarimiProcessor;
+import com.canadainc.sunnah10.processors.shamela.ShamelaDawudZuhdProcessor;
+import com.canadainc.sunnah10.processors.shamela.ShamelaIbaanahProcessor;
+import com.canadainc.sunnah10.processors.shamela.ShamelaMustadrakProcessor;
+import com.canadainc.sunnah10.processors.shamela.ShamelaPopulator;
+import com.canadainc.sunnah10.processors.shamela.ShamelaProcessor;
+import com.canadainc.sunnah10.processors.shamela.albaani.ShamelaIrwaProcessor;
+import com.canadainc.sunnah10.processors.shamela.albaani.ShamelaJaamiProcessor;
+import com.canadainc.sunnah10.processors.shamela.albaani.ShamelaSilsilaDaifProcessor;
+import com.canadainc.sunnah10.processors.shamela.albaani.ShamelaTargheebProcessor;
+import com.canadainc.sunnah10.processors.shamela.mubarak.ShamelaJihadProcessor;
+import com.canadainc.sunnah10.processors.shamela.mubarak.ShamelaMubarakZuhdProcessor;
 
 public class ShamelaPopulatorTest
 {

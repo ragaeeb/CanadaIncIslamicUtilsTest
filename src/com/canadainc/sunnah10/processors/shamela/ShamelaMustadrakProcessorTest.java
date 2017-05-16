@@ -1,8 +1,11 @@
-package com.canadainc.sunnah10.shamela;
+package com.canadainc.sunnah10.processors.shamela;
 
 import java.io.IOException;
 
 import org.junit.Test;
+
+import com.canadainc.sunnah10.processors.shamela.ShamelaMustadrakProcessor;
+import com.canadainc.sunnah10.processors.shamela.ShamelaProcessor;
 
 public class ShamelaMustadrakProcessorTest
 {

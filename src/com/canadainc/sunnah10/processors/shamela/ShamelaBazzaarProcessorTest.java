@@ -1,9 +1,12 @@
-package com.canadainc.sunnah10.shamela;
+package com.canadainc.sunnah10.processors.shamela;
 
 import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import com.canadainc.sunnah10.processors.shamela.ShamelaBazzaarProcessor;
+import com.canadainc.sunnah10.processors.shamela.ShamelaProcessor;
 
 public class ShamelaBazzaarProcessorTest
 {
@@ -60,9 +63,12 @@ public class ShamelaBazzaarProcessorTest
 				"يَحْيَى بْنِ أَيُّوبَ , عَنْ حُمَيد، عَنْ ثابتٍ، عَن أَنَس");
 		ShamelaTestUtils.assertNarration(s.getNarrations().get(2), 6838, null,
 				"عَنْ ثابتٍ عَنْ أَنَسٍ: أَنَّ رَسُولَ اللهِ صَلَّى اللَّهُ عَلَيه");
+
+		s.getNarrations().get(0).hadithNumber.equals("6837/1");
+		s.getNarrations().get(1).hadithNumber.equals("6837/2");
 	}
 
-	
+
 	@Test
 	public void subHadithNumber2() throws IOException
 	{
@@ -71,28 +77,31 @@ public class ShamelaBazzaarProcessorTest
 				"وحَدَّثنا مُحَمَّدُ بْنُ الْمُثَنَّى، حَدَّثنا عَبد الوَهَّاب , عن أيوب");
 		ShamelaTestUtils.assertNarration(s.getNarrations().get(1), 6769, null,
 				"أَنَسٍ، قَالَ: أُمِرَ بِلالٌ أن يشفع الأذان ويوتر الإقامة");
+
+		s.getNarrations().get(0).hadithNumber.equals("6769/1");
+		s.getNarrations().get(1).hadithNumber.equals("6769/2");
 	}
-	
-	
+
+
 	@Test
 	public void coupledNarrations() throws IOException
 	{
 		ShamelaTestUtils.loadAndAssertSize("bazzaar/5820.txt", s, 1);
 		ShamelaTestUtils.assertNarration(s.getNarrations().get(0), 5717, null,
 				"وَهَذَا الْحَدِيثُ لا نَعْلَمُ رَوَاهُ إلاَّ الثَّوْرِيّ، وَأبُو أُسَامة");
-		s.getNarrations().get(0).hadithNumber.equals("5717,5718");
+		s.getNarrations().get(0).hadithNumber.equals("5717 و5718");
 	}
-	
-	
+
+
 	@Test
 	public void coupledNarrations2() throws IOException
 	{
 		ShamelaTestUtils.loadAndAssertSize("bazzaar/5813.txt", s, 1);
 		ShamelaTestUtils.assertNarration(s.getNarrations().get(0), 5705, null,
 				"يَتَنَخَّمَنَّ قِبَلَ وَجْهِهِ فَإِنَّ اللَّهَ قِبَلَ وَجْهِ أَحَدِكُمْ إِذَا كان في الصلاة");
-		s.getNarrations().get(0).hadithNumber.equals("5705,5706");
+		s.getNarrations().get(0).hadithNumber.equals("5705 و5706");
 	}
-	
+
 
 	@Test
 	public void testTypo() throws IOException

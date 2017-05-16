@@ -1,4 +1,4 @@
-package com.canadainc.sunnah10.shamela;
+package com.canadainc.sunnah10;
 
 import static org.junit.Assert.*;
 
@@ -11,7 +11,7 @@ import org.junit.Test;
 import com.canadainc.islamicutils.io.ShamelaReader;
 import com.canadainc.sunnah10.Narration;
 import com.canadainc.sunnah10.Tahqeeq;
-import com.canadainc.sunnah10.shamela.ShamelaSunanReader;
+import com.canadainc.sunnah10.processors.shamela.ShamelaSunanReader;
 
 public class ShamelaSunanReaderTest
 {

@@ -1,4 +1,4 @@
-package com.canadainc.sunnah10.shamela.albaani;
+package com.canadainc.sunnah10.processors.shamela.albaani;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -13,9 +13,9 @@ import org.junit.Test;
 
 import com.canadainc.common.io.IOUtils;
 import com.canadainc.sunnah10.Narration;
-import com.canadainc.sunnah10.shamela.ShamelaProcessor;
-import com.canadainc.sunnah10.shamela.ShamelaTestUtils;
-import com.canadainc.sunnah10.shamela.albaani.ShamelaIrwaProcessor;
+import com.canadainc.sunnah10.processors.shamela.ShamelaProcessor;
+import com.canadainc.sunnah10.processors.shamela.ShamelaTestUtils;
+import com.canadainc.sunnah10.processors.shamela.albaani.ShamelaIrwaProcessor;
 
 public class ShamelaIrwaProcessorTest
 {
