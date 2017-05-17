@@ -1,4 +1,4 @@
-package com.canadainc.sunnah10.processors.shamela;
+package com.canadainc.sunnah10.processors;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.io.IOException;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
@@ -13,7 +14,7 @@ import com.canadainc.common.io.IOUtils;
 import com.canadainc.sunnah10.Narration;
 import com.canadainc.sunnah10.processors.Processor;
 
-public class ShamelaTestUtils
+public class SunnahTestUtils
 {
 	public static void assertNarration(Narration n, int id, String grade, String... bodies)
 	{
@@ -49,11 +50,29 @@ public class ShamelaTestUtils
 	}
 	
 	
+	public static void loadAndAssertShamelaSize(String file, Processor s, int size) throws IOException {
+		loadAndAssertSize("/Users/rhaq/workspace/resources/shamela/arabic/"+file, s, size);
+	}
+	
+	
 	public static void loadAndAssertSize(String file, Processor s, int size) throws IOException
 	{
-		JSONObject json = (JSONObject)JSONValue.parse( IOUtils.readFileUtf8( new File("/Users/rhaq/workspace/resources/shamela/arabic/"+file) ) );
-		s.preprocess(json);
-		s.process(json);
+		Object obj = JSONValue.parse( IOUtils.readFileUtf8( new File(file) ) );
+		JSONArray arr = new JSONArray();
+
+		if (obj instanceof JSONArray) {
+			arr = (JSONArray)obj;
+		} else {
+			arr.add(obj);
+		}
+		
+		for (Object o: arr)
+		{
+			JSONObject json = (JSONObject)o;
+			s.preprocess(json);
+			s.process(json);
+		}
+		
 		assertEquals( size, s.getNarrations().size() );
 	}
 }

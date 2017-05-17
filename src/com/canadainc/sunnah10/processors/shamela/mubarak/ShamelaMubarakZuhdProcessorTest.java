@@ -12,8 +12,8 @@ import org.junit.Test;
 
 import com.canadainc.common.io.IOUtils;
 import com.canadainc.sunnah10.Narration;
+import com.canadainc.sunnah10.processors.SunnahTestUtils;
 import com.canadainc.sunnah10.processors.shamela.ShamelaProcessor;
-import com.canadainc.sunnah10.processors.shamela.ShamelaTestUtils;
 import com.canadainc.sunnah10.processors.shamela.mubarak.ShamelaMubarakZuhdProcessor;
 
 public class ShamelaMubarakZuhdProcessorTest
@@ -29,8 +29,8 @@ public class ShamelaMubarakZuhdProcessorTest
 	@Test
 	public void process1() throws IOException
 	{
-		ShamelaTestUtils.loadAndAssertSize("zuhd_mubarak/0063.txt", s, 1);
-		ShamelaTestUtils.assertNarration(s.getNarrations().get(0), 61, null,
+		SunnahTestUtils.loadAndAssertShamelaSize("zuhd_mubarak/0063.txt", s, 1);
+		SunnahTestUtils.assertNarration(s.getNarrations().get(0), 61, null,
 				"أَخْبَرَكُمْ أَبُو عُمَرَ بْنُ حَيَوَيْهِ", "ص: 21", "يُلْتَمَسَ الْعِلْمُ عِنْدَ الْأَصَاغِرِ");
 	}
 
@@ -38,9 +38,9 @@ public class ShamelaMubarakZuhdProcessorTest
 	@Test
 	public void preprocess() throws IOException
 	{
-		ShamelaTestUtils.loadAndAssertSize("zuhd_mubarak/1521.txt", s, 2);
-		ShamelaTestUtils.assertNarration(s.getNarrations().get(0), 1495, null);
-		ShamelaTestUtils.assertNarration(s.getNarrations().get(1), 1496, null);
+		SunnahTestUtils.loadAndAssertShamelaSize("zuhd_mubarak/1521.txt", s, 2);
+		SunnahTestUtils.assertNarration(s.getNarrations().get(0), 1495, null);
+		SunnahTestUtils.assertNarration(s.getNarrations().get(1), 1496, null);
 	}
 	
 	
@@ -58,9 +58,9 @@ public class ShamelaMubarakZuhdProcessorTest
 	{
 		s.getNarrations().add( new Narration(1) );
 		
-		ShamelaTestUtils.loadAndAssertSize("zuhd_mubarak/1662.txt", s, 1);
-		ShamelaTestUtils.loadAndAssertSize("zuhd_mubarak/1663.txt", s, 2);
+		SunnahTestUtils.loadAndAssertShamelaSize("zuhd_mubarak/1662.txt", s, 1);
+		SunnahTestUtils.loadAndAssertShamelaSize("zuhd_mubarak/1663.txt", s, 2);
 		
-		ShamelaTestUtils.assertNarration(s.getNarrations().get(1), 2, null, "وَحَطَّ بِهَا عَنْكَ خَطِيئَةً");
+		SunnahTestUtils.assertNarration(s.getNarrations().get(1), 2, null, "وَحَطَّ بِهَا عَنْكَ خَطِيئَةً");
 	}
 }
