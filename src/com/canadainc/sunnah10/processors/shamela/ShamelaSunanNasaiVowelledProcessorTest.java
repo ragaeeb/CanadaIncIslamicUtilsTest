@@ -1,8 +1,6 @@
 package com.canadainc.sunnah10.processors.shamela;
 
-import static org.junit.Assert.*;
-
-import java.io.IOException;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -22,11 +20,11 @@ public class ShamelaSunanNasaiVowelledProcessorTest
 
 
 	@Test
-	public void process() throws IOException
+	public void process() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("nasai/0001.txt", s, 0); // load book
-		SunnahTestUtils.loadAndAssertShamelaSize("nasai/0002.txt", s, 0); // load chapter
-		SunnahTestUtils.loadAndAssertShamelaSize("nasai/0104.txt", s, 1); // load narration
+		SunnahTestUtils.loadAndAssertSize("nasai_vowels/0001.txt", s, 0); // load book
+		SunnahTestUtils.loadAndAssertSize("nasai_vowels/0002.txt", s, 0); // load chapter
+		SunnahTestUtils.loadAndAssertSize("nasai_vowels/0104.txt", s, 1); // load narration
 		SunnahTestUtils.assertNarration(s.getNarrations().get(0), 57, "صحيح",
 				"أَخْبَرَنَا إِسْحَاقُ بْنُ إِبْرَاهِيمَ قَالَ: أَنْبَأَنَا",
 				"عَنِ النَّبِيِّ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ مِثْلهُ");
@@ -36,29 +34,29 @@ public class ShamelaSunanNasaiVowelledProcessorTest
 	
 	
 	@Test
-	public void noGrade() throws IOException
+	public void noGrade() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("nasai/0623.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("nasai_vowels/0623.txt", s, 1);
 		SunnahTestUtils.assertNarration(s.getNarrations().get(0), 384, null,
 				"قَالَ إِسْحَاقُ: أَنْبَأَنَا أَبُو مُعَاوِيَةَ، عَنِ الْأَعْمَشِ بِهَذَا الْإِسْنَادِ مِثْلَهُ");
 	}
 	
 	
 	@Test
-	public void hadithInFooter() throws IOException
+	public void hadithInFooter() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("nasai/0518.txt", s, 2);
+		SunnahTestUtils.loadAndAssertSize("nasai_vowels/0518.txt", s, 2);
 		SunnahTestUtils.assertNarration(s.getNarrations().get(0), 317, "صحيح",
 				"فِي يَدَيْهِ، وَمَسَحَ بِهِمَا وَجْهَهُ وَكَفَّيْهِ مَرَّةً وَاحِدَةً");
 	}
 
 
 	@Test
-	public void testChapter() throws IOException
+	public void testChapter() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("nasai/0002.txt", s, 0); // load 1st chapter
-		SunnahTestUtils.loadAndAssertShamelaSize("nasai/0103.txt", s, 0); // load 2nd chapter
-		SunnahTestUtils.loadAndAssertShamelaSize("nasai/0104.txt", s, 1); // load narration
+		SunnahTestUtils.loadAndAssertSize("nasai_vowels/0002.txt", s, 0); // load 1st chapter
+		SunnahTestUtils.loadAndAssertSize("nasai_vowels/0103.txt", s, 0); // load 2nd chapter
+		SunnahTestUtils.loadAndAssertSize("nasai_vowels/0104.txt", s, 1); // load narration
 		assertEquals( new Chapter("بَابُ الْمَاءِ الدَّائِمِ", 2), s.getNarrations().get(0).chapter);
 	}
 }

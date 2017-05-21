@@ -1,17 +1,11 @@
 package com.canadainc.sunnah10.processors;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
-import java.io.File;
-import java.io.IOException;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.canadainc.common.io.IOUtils;
 import com.canadainc.sunnah10.Book;
 import com.canadainc.sunnah10.Chapter;
 import com.canadainc.sunnah10.Narration;
@@ -31,9 +25,9 @@ public class SunnahDotComProcessorTest
 	}
 
 	@Test
-	public void sunanAbiDawud() throws IOException
+	public void sunanAbiDawud() throws Exception
 	{
-		loadAndAssertSize("abudawud/1.txt", s, 390);
+		SunnahTestUtils.loadAndAssertSize("sunnah_com/arabic/abudawud/1.txt", s, 390);
 		Narration n = s.getNarrations().get(0);
 		SunnahTestUtils.assertNarration(n, 900010, "حسن صحيح", "حَدَّثَنَا عَبْدُ اللَّهِ بْنُ مَسْلَمَةَ بْنِ", "وسلم كَانَ إِذَا ذَهَبَ الْمَذْهَبَ أَبْعَدَ");
 		assertEquals( new Book(1, "كتاب الطهارة"), n.book );
@@ -59,10 +53,5 @@ public class SunnahDotComProcessorTest
 	@Test
 	public void testGetPageNumber()
 	{
-	}
-
-
-	private void loadAndAssertSize(String file, Processor s, int size) throws IOException {
-		SunnahTestUtils.loadAndAssertSize("/Users/rhaq/workspace/resources/sunnah.com/arabic/"+file, s, size);
 	}
 }

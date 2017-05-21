@@ -17,23 +17,22 @@ public class ShamelaSilsilaDaifProcessorTest
 	private ShamelaProcessor s;
 
 	@Before
-	public void setUp() throws Exception
-	{
+	public void setUp() throws Exception {
 		s = new ShamelaSilsilaDaifProcessor();
 	}
 
 	@Test
-	public void process() throws IOException
+	public void process() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/00050.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/00050.txt", s, 1);
 		SunnahTestUtils.assertCommentary(s.getNarrations().get(0), 1, "باطل",
 				new String[]{"أخرجه النسائي في", "أورده منها أبو بكر بن أبي"},
 				"الدين هو العقل، ومن لا دين له لا عقل له)");
 
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/00051.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/00051.txt", s, 1);
 		s.getNarrations().get(0).commentary.contains("وانظر الحديث (370 و5644");
 
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/00058.txt", s, 2);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/00058.txt", s, 2);
 		s.getNarrations().get(0).commentary.contains("وغيره فيها: لا أصل له منها");
 		SunnahTestUtils.assertCommentary(s.getNarrations().get(1), 4, "لا أصل له",
 				new String[]{"المسجد يأكل الحسنات كما تأكل النار الحطب"},
@@ -42,9 +41,9 @@ public class ShamelaSilsilaDaifProcessorTest
 
 
 	@Test
-	public void dropRanges() throws IOException
+	public void dropRanges() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/00958.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/00958.txt", s, 1);
 		SunnahTestUtils.assertCommentary(s.getNarrations().get(0), 630, "ضعيف",
 				new String[]{"ذكره الغزالي في", "الهجيمي عن عبد", "74 طبع سنة", "الغالب. والله أعلم"},
 				"قال الله تعالى: الإخلاص سر من سري، استودعته قلب من أحببت من عبادي");
@@ -52,9 +51,9 @@ public class ShamelaSilsilaDaifProcessorTest
 
 
 	@Test
-	public void testFootnotes() throws IOException
+	public void testFootnotes() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/00959.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/00959.txt", s, 1);
 		SunnahTestUtils.assertCommentary(s.getNarrations().get(0), 631, "موضوع",
 				new String[]{"ولا ذكره إلا على جهة"},
 				"والمتسحر، والمرابط ");
@@ -62,9 +61,9 @@ public class ShamelaSilsilaDaifProcessorTest
 
 
 	@Test
-	public void testTypos() throws IOException
+	public void testTypos() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/07130.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/07130.txt", s, 1);
 		SunnahTestUtils.assertCommentary(s.getNarrations().get(0), 5179, "منكر",
 				new String[]{"ذكره وتخريجه هناك", "رحمه الله - لم يذكر حديثاً برقم"},
 				"أول ما يوضع في ميزان العبد نفقته على أهله");
@@ -72,22 +71,22 @@ public class ShamelaSilsilaDaifProcessorTest
 
 
 	@Test
-	public void testEmbeddedGrades() throws IOException
+	public void testEmbeddedGrades() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/00984.txt", s, 1);
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/00985.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/00984.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/00985.txt", s, 1);
 		SunnahTestUtils.assertCommentary(s.getNarrations().get(0), 656, "ضعيف",
 				new String[]{"رواه الطبراني في", "بدليل قوله في الحديث الأول"},
 				"أغيثوني، فإن لله عبادا لا نراهم");
 
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/01491.txt", s, 2);
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/01492.txt", s, 2);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/01491.txt", s, 2);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/01492.txt", s, 2);
 		SunnahTestUtils.assertCommentary(s.getNarrations().get(1), 1015, "ضعيف",
 				new String[]{"وعبد الله بن الزبير صحابي معروف"},
 				"من سنة الحج أن يصلي", "النساء والطيب حتى يزور");
 
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/01976.txt", s, 3);
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/01977.txt", s, 4);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/01976.txt", s, 3);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/01977.txt", s, 4);
 		SunnahTestUtils.assertCommentary(s.getNarrations().get(2), 1338, "منكر",
 				new String[]{"الفضل بن الأغر الكلابي عن أبيه"},
 				"رحمته، وإن شئت عذبته");
@@ -98,10 +97,10 @@ public class ShamelaSilsilaDaifProcessorTest
 
 
 	@Test
-	public void testNumberedList1() throws IOException
+	public void testNumberedList1() throws Exception
 	{
 		s.getNarrations().add( new Narration(2416) );
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/03299.txt", s, 2);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/03299.txt", s, 2);
 		SunnahTestUtils.assertCommentary(s.getNarrations().get(1), 2417, "موضوع بهذا السياق",
 				new String[]{"لا يتابع عليه، ولا يعرف إلا به"},
 				"وعبد مملوك أدى حق الله، وحق مواليه من نفسه");
@@ -109,10 +108,10 @@ public class ShamelaSilsilaDaifProcessorTest
 
 
 	@Test
-	public void testNumberedList2() throws IOException
+	public void testNumberedList2() throws Exception
 	{
 		s.getNarrations().add( new Narration(6740) );
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/10495.txt", s, 2);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/10495.txt", s, 2);
 		SunnahTestUtils.assertCommentary(s.getNarrations().get(1), 6741, "ضعيف جداً",
 				new String[]{"واه جداً؛ آفته نوح بن جعونة"},
 				"كَظَمَهَا عَبْدٌ لِلَّهِ إِلَّا مَلَأَ اللَّهُ جَوْفَهُ");
@@ -120,10 +119,10 @@ public class ShamelaSilsilaDaifProcessorTest
 
 
 	@Test
-	public void testNumberedList3() throws IOException
+	public void testNumberedList3() throws Exception
 	{
 		s.getNarrations().add( new Narration(6434) );
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/09777.txt", s, 2);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/09777.txt", s, 2);
 		SunnahTestUtils.assertCommentary(s.getNarrations().get(1), 6435, "منكر",
 				new String[]{"إسناد ضعيف جداً"},
 				"يَشَاءُ مِنْ عِبَادِهِ، وَمَا");
@@ -131,9 +130,9 @@ public class ShamelaSilsilaDaifProcessorTest
 
 
 	@Test
-	public void testNumberedList4() throws IOException
+	public void testNumberedList4() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/10489.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/10489.txt", s, 1);
 		SunnahTestUtils.assertCommentary(s.getNarrations().get(0), 6739, "منكر بذكر الفقرة",
 				new String[]{"سلمان وأبي الدرداء، وقوله له"},
 				"إِلا فَتَحَ اللَّهُ عَلَيْهِ بَابَ فَقْرٍ");
@@ -141,9 +140,9 @@ public class ShamelaSilsilaDaifProcessorTest
 
 
 	@Test
-	public void testNumberedList5() throws IOException
+	public void testNumberedList5() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/08195.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/08195.txt", s, 1);
 		SunnahTestUtils.assertCommentary(s.getNarrations().get(0), 5697, "ضعيف جدًا - أو موضوع بهذا السياق والتمام",
 				new String[]{"عبد الله بن عمر مرفوعًا"},
 				"يمشي امرؤٌ على الأرضِ يَبْغِي");
@@ -151,9 +150,9 @@ public class ShamelaSilsilaDaifProcessorTest
 
 
 	@Test
-	public void testDetached1() throws IOException
+	public void testDetached1() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/09217.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/09217.txt", s, 1);
 		SunnahTestUtils.assertCommentary(s.getNarrations().get(0), 6194, "منكر",
 				new String[]{"وحسّن له الترمذي، فانظر! الصحيحة"},
 				"أجر غسله، وأجر غسل امرأته");
@@ -161,9 +160,9 @@ public class ShamelaSilsilaDaifProcessorTest
 
 
 	@Test
-	public void testDetached2() throws IOException
+	public void testDetached2() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/09687.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/09687.txt", s, 1);
 		SunnahTestUtils.assertCommentary(s.getNarrations().get(0), 6393, "ضعيف",
 				new String[]{"والسياق للترمذي وقال"},
 				"ابْتَغَى الْهُدَى فِي غَيْرِهِ أَضَلَّهُ اللَّهُ ");
@@ -171,9 +170,9 @@ public class ShamelaSilsilaDaifProcessorTest
 
 
 	@Test
-	public void testDetached3() throws IOException
+	public void testDetached3() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/04442.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/04442.txt", s, 1);
 		SunnahTestUtils.assertCommentary(s.getNarrations().get(0), 3294, "موضوع",
 				new String[]{"كذب على رسول الله - صلى الله عليه وسلم"},
 				"ومن أخذ منه القذاة بقدر ما تقذى");
@@ -181,9 +180,9 @@ public class ShamelaSilsilaDaifProcessorTest
 
 
 	@Test
-	public void testDetached4() throws IOException
+	public void testDetached4() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/02916.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/02916.txt", s, 1);
 		SunnahTestUtils.assertCommentary(s.getNarrations().get(0), 2108, "ضعيف",
 				new String[]{"عنه جرير، وكذلك سائر الرواة ثقات رجال"},
 				"المنكر");
@@ -191,9 +190,9 @@ public class ShamelaSilsilaDaifProcessorTest
 
 
 	@Test
-	public void testDetached5() throws IOException
+	public void testDetached5() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/07710.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/07710.txt", s, 1);
 		SunnahTestUtils.assertCommentary(s.getNarrations().get(0), 5490, "موضوع بهذا التمام",
 				new String[]{"وقد عزاه للطبراني، وضعفه بكثير"},
 				"والملاحم: بدر، وأحد، والخندق، وحنين");
@@ -201,9 +200,9 @@ public class ShamelaSilsilaDaifProcessorTest
 
 
 	@Test
-	public void testDetached6() throws IOException
+	public void testDetached6() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/10793.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/10793.txt", s, 1);
 		SunnahTestUtils.assertCommentary(s.getNarrations().get(0), 6861, "منكر جداً بزيادة: (وواحدة)",
 				new String[]{"طريق محمد بن عشان القزاز"},
 				"يارسول الله! وواحدة؟ قال: وواحدة");
@@ -211,9 +210,9 @@ public class ShamelaSilsilaDaifProcessorTest
 
 
 	@Test
-	public void testDetached7() throws IOException
+	public void testDetached7() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/02828.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/02828.txt", s, 1);
 		SunnahTestUtils.assertCommentary(s.getNarrations().get(0), 2034, "ضعيف",
 				new String[]{"الحسين عن أبيه عن علي مرفوعا"},
 				"السلطان، فإذا فعلوا ذلك، فاحذروهم");
@@ -221,9 +220,9 @@ public class ShamelaSilsilaDaifProcessorTest
 
 
 	@Test
-	public void testDetached8() throws IOException
+	public void testDetached8() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/08802.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/08802.txt", s, 1);
 		SunnahTestUtils.assertCommentary(s.getNarrations().get(0), 6010, "منكر",
 				new String[]{"عثمان بن إبراهيم الحاطبي -، قال الذهبي في"},
 				"خَدِّهِ بَعْدَمَا مَاتَ، وَلا نعْلَمُ");
@@ -231,9 +230,9 @@ public class ShamelaSilsilaDaifProcessorTest
 
 
 	@Test
-	public void testMixedGrade1() throws IOException
+	public void testMixedGrade1() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/08662.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/08662.txt", s, 1);
 		SunnahTestUtils.assertCommentary(s.getNarrations().get(0), 5949, "موضوع",
 				new String[]{"وقال البردعي؛ كما في"},
 				"بشيءٍ أفضل من شربة عسل");
@@ -241,9 +240,9 @@ public class ShamelaSilsilaDaifProcessorTest
 
 
 	@Test
-	public void testMixedGrade2() throws IOException
+	public void testMixedGrade2() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/08426.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/08426.txt", s, 1);
 		SunnahTestUtils.assertCommentary(s.getNarrations().get(0), 5805, "ضعيف جداً",
 				new String[]{"الأشعث عن أبي عثمان عن ثوبان مرفوعاً"},
 				"لرحمه، ومن التاجر المكنز");
@@ -251,9 +250,9 @@ public class ShamelaSilsilaDaifProcessorTest
 
 
 	@Test
-	public void testMixedGrade3() throws IOException
+	public void testMixedGrade3() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/00829.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/00829.txt", s, 1);
 		SunnahTestUtils.assertCommentary(s.getNarrations().get(0), 513, "موضوع",
 				new String[]{"رواه الخطيب (12 / 92) والسلفي في"},
 				"غسل الإناء وطهارة الفناء، يورثان الغنى");
@@ -261,9 +260,9 @@ public class ShamelaSilsilaDaifProcessorTest
 
 
 	@Test
-	public void testBrokenUp() throws IOException
+	public void testBrokenUp() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/08978.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/08978.txt", s, 1);
 		SunnahTestUtils.assertCommentary(s.getNarrations().get(0), 6087, "منكر بذكر الملكين",
 				new String[]{"حفظهما، قال الحافظ في"},
 				"الدَّجَّالُ، وَذَلِكَ فِتْنَةُ ");
@@ -271,10 +270,10 @@ public class ShamelaSilsilaDaifProcessorTest
 
 
 	@Test
-	public void noGrade1() throws IOException
+	public void noGrade1() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/07536.txt", s, 1);
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/07537.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/07536.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/07537.txt", s, 1);
 		SunnahTestUtils.assertCommentary(s.getNarrations().get(0), 5406, null,
 				new String[]{"سكت عنها ساعة، وتحينت"},
 				"فإذا الجفنة قد امتلأت");
@@ -282,10 +281,10 @@ public class ShamelaSilsilaDaifProcessorTest
 
 
 	@Test
-	public void noGrade2() throws IOException
+	public void noGrade2() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/08695.txt", s, 1);
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/08696.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/08695.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/08696.txt", s, 1);
 		SunnahTestUtils.assertCommentary(s.getNarrations().get(0), 5961, null,
 				new String[]{"الكديمي يَقِينًا؛ فإنهم"},
 				"سُليم عن عروة بن");
@@ -293,12 +292,12 @@ public class ShamelaSilsilaDaifProcessorTest
 
 
 	@Test
-	public void testNumberedListMultiPages() throws IOException
+	public void testNumberedListMultiPages() throws Exception
 	{
 		s.getNarrations().add( new Narration(7128) );
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/11224.txt", s, 2);
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/11225.txt", s, 2);
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/11226.txt", s, 2);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/11224.txt", s, 2);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/11225.txt", s, 2);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/11226.txt", s, 2);
 		SunnahTestUtils.assertCommentary(s.getNarrations().get(1), 7129, "منكر جداً",
 				new String[]{"وقد أخرجه الطبراني في"},
 				"دونه فجاءته شهادة أن لا إله إلا");
@@ -306,19 +305,19 @@ public class ShamelaSilsilaDaifProcessorTest
 
 
 	@Test
-	public void testAbandoned() throws IOException
+	public void testAbandoned() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/03875.txt", s, 0);
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/04849.txt", s, 0);
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/04858.txt", s, 0);
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/05363.txt", s, 0);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/03875.txt", s, 0);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/04849.txt", s, 0);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/04858.txt", s, 0);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/05363.txt", s, 0);
 	}
 
 
 	@Test
-	public void testStrangeVowel() throws IOException
+	public void testStrangeVowel() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("silsila_daif/11254.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("silsila_daif/11254.txt", s, 1);
 		SunnahTestUtils.assertCommentary(s.getNarrations().get(0), 7143, "َضعيف جداً",
 				new String[]{"متروك متهم"},
 				"بخير عملٍ، واجعل ثوابه الجنة");
@@ -326,7 +325,7 @@ public class ShamelaSilsilaDaifProcessorTest
 
 
 	@Test
-	public void preprocess()  throws IOException
+	public void preprocess()  throws Exception
 	{
 		JSONObject json = new JSONObject();
 		String[] rejected = new String[]{"6829", "6830", "6831"};

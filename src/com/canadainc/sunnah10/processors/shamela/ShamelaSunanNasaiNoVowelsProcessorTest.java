@@ -1,7 +1,5 @@
 package com.canadainc.sunnah10.processors.shamela;
 
-import java.io.IOException;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,24 +13,24 @@ public class ShamelaSunanNasaiNoVowelsProcessorTest
 	public void setUp() throws Exception {
 		s = new ShamelaSunanNasaiNoVowelsProcessor();
 	}
-	
-	
-	@Test
-	public void process() throws IOException
-	{
-		SunnahTestUtils.loadAndAssertShamelaSize("nasai_no_vowels/0103.txt", s, 1);
-		SunnahTestUtils.assertNarration(s.getNarrations().get(0), 5188, "صحيح، التعليق الرغيب (3 / 104)",
-				"أخبرنا أحمد بن عمرو بن السرح قال",
-				"الكذب علي يولج النار");
-	}
-	
+
 
 	@Test
-	public void processDotted() throws IOException
+	public void process() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("nasai_no_vowels/0006.txt", s, 1);
-		SunnahTestUtils.assertNarration(s.getNarrations().get(0), 6, "شاذ، بزيادة: \" اقرؤوا \"، صحيح أبي داود (1442)",
-				"أخبرنا علي بن حجر قال أنبأنا",
-				"إنك جئتني وفي يدك جمرة من نار");
+		SunnahTestUtils.loadAndAssertSize("nasai_no_vowels/0103.txt", s, 1);
+		SunnahTestUtils.assertNarration(s.getNarrations().get(0), 5188, "صحيح، التعليق الرغيب (3 / 104)",
+				"أخبرنا أحمد بن عمرو بن السرح قال",
+				"وسلم وقال إنك جئتني وفي يدك جمرة من نار");
+	}
+
+
+	@Test
+	public void processDotted() throws Exception
+	{
+		SunnahTestUtils.loadAndAssertSize("nasai_no_vowels/0006.txt", s, 1);
+		SunnahTestUtils.assertNarration(s.getNarrations().get(0), 2571, "شاذ، بزيادة: \" اقرؤوا.....\"، صحيح أبي داود (1442)",
+				"أخبرنا علي بن حجر قال أنبأنا إسمعيل",
+				"شئتم (لا يسألون الناس إلحافا");
 	}
 }

@@ -24,11 +24,11 @@ public class ShamelaTargheebProcessorTest
 	}
 
 	@Test
-	public void testContinuedNarration() throws IOException
+	public void testContinuedNarration() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("targheeb/0100.txt", s, 1);
-		SunnahTestUtils.loadAndAssertShamelaSize("targheeb/0101.txt", s, 1);
-		SunnahTestUtils.loadAndAssertShamelaSize("targheeb/0102.txt", s, 2);
+		SunnahTestUtils.loadAndAssertSize("targheeb/0100.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("targheeb/0101.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("targheeb/0102.txt", s, 2);
 		SunnahTestUtils.assertNarration(s.getNarrations().get(0), 1, "صحيح",
 				"عن ابن عمر رضي الله عنهما قال: سمعت رسول الله - صَلَّى اللهُ عَلَيْهِ ",
 				"فانْفَرَجَتْ شيئاً لا يستطيعون الخروجَ، -قال النبي - صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ",
@@ -48,9 +48,9 @@ public class ShamelaTargheebProcessorTest
 
 
 	@Test
-	public void testPartialChapter() throws IOException
+	public void testPartialChapter() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("targheeb/0106.txt", s, 2);
+		SunnahTestUtils.loadAndAssertSize("targheeb/0106.txt", s, 2);
 		SunnahTestUtils.assertNarration(s.getNarrations().get(0), 9, "حسن لغيره",
 				"رواه الطبراني بإسناد لا بأس");
 		SunnahTestUtils.assertNarration(s.getNarrations().get(1), 10, "صحيح",
@@ -63,11 +63,11 @@ public class ShamelaTargheebProcessorTest
 
 
 	@Test
-	public void testMultiChapter() throws IOException
+	public void testMultiChapter() throws Exception
 	{
 		Chapter c = new Chapter("الترغيب في إِكرام العلماء إجلالهم وتوقيرهم، والترهيب من إضاعتهم وعدم المبالاة بهم", 5);
 
-		SunnahTestUtils.loadAndAssertShamelaSize("targheeb/0150.txt", s, 3);
+		SunnahTestUtils.loadAndAssertSize("targheeb/0150.txt", s, 3);
 
 		SunnahTestUtils.assertNarration(s.getNarrations().get(0), 97, "صحيح",
 				"أحدِهما، قدّمه في اللحدِ. رواه البخاري");
@@ -84,12 +84,12 @@ public class ShamelaTargheebProcessorTest
 
 
 	@Test
-	public void testBookNoBrackets() throws IOException
+	public void testBookNoBrackets() throws Exception
 	{
 		Book b = new Book(3, "كتاب العِلم");
 		Chapter c = new Chapter("الترغيب في العلم وطلبه وتعلمه وتعليمه، وما جاء في فضل العلماء والمتعلمين", 1);
 
-		SunnahTestUtils.loadAndAssertShamelaSize("targheeb/0135.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("targheeb/0135.txt", s, 1);
 
 		SunnahTestUtils.assertNarration(s.getNarrations().get(0), 67, "صحيح",
 				"وفي إسناده راوٍ لم يسم");
@@ -100,13 +100,13 @@ public class ShamelaTargheebProcessorTest
 
 
 	@Test
-	public void numberedList() throws IOException
+	public void numberedList() throws Exception
 	{
 		Chapter c = new Chapter("الترهيب من الالتفات في الصلاة وغيره مما يذكَر", 36);
 
 		s.getNarrations().add( new Narration(551) );
 
-		SunnahTestUtils.loadAndAssertShamelaSize("targheeb/0357.txt", s, 2);
+		SunnahTestUtils.loadAndAssertSize("targheeb/0357.txt", s, 2);
 
 		SunnahTestUtils.assertNarration(s.getNarrations().get(1), 552, "صحيح",
 				"الله عنه؛ أنّ النبي - صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ",
@@ -117,9 +117,9 @@ public class ShamelaTargheebProcessorTest
 	
 	
 	@Test
-	public void deletedHadeeth() throws IOException
+	public void deletedHadeeth() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("targheeb/1709.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("targheeb/1709.txt", s, 1);
 
 		SunnahTestUtils.assertNarration(s.getNarrations().get(0), 3492, "صحيح",
 				"أسْكَنُه إلى يوم القِيامَةِ");
@@ -127,9 +127,9 @@ public class ShamelaTargheebProcessorTest
 
 
 	@Test
-	public void infiniteLoop() throws IOException
+	public void infiniteLoop() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("targheeb/1057.txt", s, 3);
+		SunnahTestUtils.loadAndAssertSize("targheeb/1057.txt", s, 3);
 
 		Narration n = s.getNarrations().get(0);
 		SunnahTestUtils.assertNarration(n, 1964, "صحيح",

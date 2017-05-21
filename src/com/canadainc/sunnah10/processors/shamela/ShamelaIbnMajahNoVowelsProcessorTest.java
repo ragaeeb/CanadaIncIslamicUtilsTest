@@ -1,7 +1,5 @@
 package com.canadainc.sunnah10.processors.shamela;
 
-import java.io.IOException;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,9 +15,9 @@ public class ShamelaIbnMajahNoVowelsProcessorTest
 	}
 
 	@Test
-	public void process() throws IOException
+	public void process() throws Exception
 	{
-		SunnahTestUtils.loadAndAssertShamelaSize("ibnmajah/0103.txt", s, 1);
+		SunnahTestUtils.loadAndAssertSize("ibnmajah_no_vowels/0103.txt", s, 1);
 		SunnahTestUtils.assertNarration(s.getNarrations().get(0), 31, "صحيح",
 				"حدثنا عبد الله بن عامر بن",
 				"الكذب علي يولج النار");

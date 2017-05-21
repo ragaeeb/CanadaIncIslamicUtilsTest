@@ -1,9 +1,11 @@
-package com.canadainc.sunnah10.processors.shamela;
+package com.canadainc.sunnah10.processors;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import com.canadainc.sunnah10.processors.TypoProcessor;
 
 public class TypoProcessorTest
 {
