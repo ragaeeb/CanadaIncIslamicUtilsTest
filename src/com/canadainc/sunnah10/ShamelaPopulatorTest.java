@@ -4,21 +4,25 @@ import static org.junit.Assert.assertEquals;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.canadainc.sunnah10.processors.shamela.ShamelaAwaanahProcessor;
+import com.canadainc.sunnah10.processors.Processor;
+import com.canadainc.sunnah10.processors.SunnahDotComProcessor;
 import com.canadainc.sunnah10.processors.shamela.ShamelaBazzaarProcessor;
+import com.canadainc.sunnah10.processors.shamela.ShamelaContinuedProcessor;
 import com.canadainc.sunnah10.processors.shamela.ShamelaDarimiProcessor;
-import com.canadainc.sunnah10.processors.shamela.ShamelaDawudZuhdProcessor;
 import com.canadainc.sunnah10.processors.shamela.ShamelaIbaanahProcessor;
 import com.canadainc.sunnah10.processors.shamela.ShamelaIbnMajahNoVowelsProcessor;
 import com.canadainc.sunnah10.processors.shamela.ShamelaIbnMajahVowelledProcessor;
 import com.canadainc.sunnah10.processors.shamela.ShamelaMustadrakProcessor;
 import com.canadainc.sunnah10.processors.shamela.ShamelaPopulator;
-import com.canadainc.sunnah10.processors.shamela.ShamelaProcessor;
+import com.canadainc.sunnah10.processors.shamela.ShamelaStandardProcessor;
 import com.canadainc.sunnah10.processors.shamela.ShamelaSunanNasaiNoVowelsProcessor;
 import com.canadainc.sunnah10.processors.shamela.ShamelaSunanNasaiVowelledProcessor;
 import com.canadainc.sunnah10.processors.shamela.ShamelaTirmidhiNoVowelsProcessor;
@@ -60,6 +64,47 @@ public class ShamelaPopulatorTest
 
 
 	@Test
+	public void processZuhdAhmad() throws Exception {
+		ShamelaPopulator sp = process("zuhd_ahmad", new ShamelaStandardProcessor(), 2379);
+		sp.validateSequence();
+	}
+
+
+	@Test
+	public void processSunnahDotComIbnMajah() throws Exception {
+		Processor p = new SunnahDotComProcessor();
+		ShamelaPopulator sp = new ShamelaPopulator("sunnah_com", "english/ibnmajah", p);
+		sp.process(c);
+
+		List<Narration> narrations = p.getNarrations();
+
+		Collections.sort(narrations, new Comparator<Narration>()
+		{
+			@Override
+			public int compare(Narration o1, Narration o2)
+			{
+				int a = Integer.parseInt(o1.hadithNumber);
+				int b = Integer.parseInt(o2.hadithNumber);
+				return a-b;
+			}
+		});
+
+		int i = 0;
+
+		for (Narration n: narrations)
+		{
+			++i;
+			System.out.println(n.hadithNumber);
+
+			if (i != Integer.parseInt(n.hadithNumber) ) {
+				System.err.println("*** BAD: "+n.hadithNumber);
+				break;
+			}
+		}
+	}
+
+
+	@Test
 	public void processIbnMajahNoVowels() throws Exception {
 		ShamelaPopulator sp = process("ibnmajah_no_vowels", new ShamelaIbnMajahNoVowelsProcessor(), 4341);
 		sp.validateSequence();
@@ -97,6 +142,41 @@ public class ShamelaPopulatorTest
 		//sp.validateSequence();
 		sp.validateGrades();
 	}
+	
+	
+	@Test
+	public void processSunnahNasai() throws Exception {
+		Processor p = new SunnahDotComProcessor();
+		ShamelaPopulator sp = new ShamelaPopulator("sunnah_com", "english/nasai", p);
+		sp.process(c);
+
+		List<Narration> narrations = p.getNarrations();
+		System.out.println(narrations.size());
+
+		Collections.sort(narrations, new Comparator<Narration>()
+		{
+			@Override
+			public int compare(Narration o1, Narration o2)
+			{
+				int a = Integer.parseInt(o1.hadithNumber);
+				int b = Integer.parseInt(o2.hadithNumber);
+				return a-b;
+			}
+		});
+
+		int i = 0;
+
+		for (Narration n: narrations)
+		{
+			++i;
+			System.out.println(n.hadithNumber);
+
+			if (i != Integer.parseInt(n.hadithNumber) ) {
+				System.err.println("*** BAD: "+n.hadithNumber);
+				break;
+			}
+		}
+	}
 
 
 	@Test
@@ -105,7 +185,6 @@ public class ShamelaPopulatorTest
 		sp.validateSequence();
 		sp.validateGrades();
 	}
-
 
 
 	@Test
@@ -134,7 +213,7 @@ public class ShamelaPopulatorTest
 
 	@Test
 	public void testProcessZuhdDawud() throws Exception {
-		process("zuhd_dawud", new ShamelaDawudZuhdProcessor(), 502);
+		process("zuhd_dawud", new ShamelaStandardProcessor(), 502);
 	}
 
 
@@ -161,7 +240,7 @@ public class ShamelaPopulatorTest
 	@Test
 	public void testProcessAwaanah() throws Exception
 	{
-		ShamelaPopulator sp = process("awaanah", new ShamelaAwaanahProcessor(), 8682);
+		ShamelaPopulator sp = process("awaanah", new ShamelaContinuedProcessor(), 8682);
 		sp.validateSequence();
 		//sp.validateGrades();
 	}
@@ -173,7 +252,7 @@ public class ShamelaPopulatorTest
 	}
 
 
-	private ShamelaPopulator process(String collection, ShamelaProcessor processor, int expectedSize) throws Exception
+	private ShamelaPopulator process(String collection, Processor processor, int expectedSize) throws Exception
 	{
 		ShamelaPopulator sp = new ShamelaPopulator(collection, processor);
 		sp.process(c);

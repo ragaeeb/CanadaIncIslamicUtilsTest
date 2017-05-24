@@ -27,8 +27,7 @@ public class SunnahPopulatorTest
 	 * @throws java.lang.Exception
 	 */
 	@BeforeClass
-	public static void setUpBeforeClass() throws Exception
-	{
+	public static void setUpBeforeClass() throws Exception {
 		Class.forName("org.sqlite.JDBC"); // load the sqlite-JDBC driver using the current class loader
 	}
 
@@ -44,7 +43,7 @@ public class SunnahPopulatorTest
 	 * Test method for {@link com.canadainc.sunnah10.SunnahPopulator#loadData()}.
 	 */
 	@Test
-	public void testProcess()
+	public void process()
 	{
 		try {
 			SunnahPopulator sp = new SunnahPopulator("english", "res/sunnah10");

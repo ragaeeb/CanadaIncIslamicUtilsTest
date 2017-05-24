@@ -8,7 +8,7 @@ import com.canadainc.sunnah10.processors.shamela.ShamelaAwaanahProcessorTest;
 import com.canadainc.sunnah10.processors.shamela.ShamelaBazzaarProcessorTest;
 import com.canadainc.sunnah10.processors.shamela.ShamelaBookDownloaderTest;
 import com.canadainc.sunnah10.processors.shamela.ShamelaDarimiProcessorTest;
-import com.canadainc.sunnah10.processors.shamela.ShamelaDawudZuhdProcessorTest;
+import com.canadainc.sunnah10.processors.shamela.ShamelaStandardProcessorTest;
 import com.canadainc.sunnah10.processors.shamela.ShamelaIbaanahProcessorTest;
 import com.canadainc.sunnah10.processors.shamela.ShamelaIbnMajahNoVowelsProcessorTest;
 import com.canadainc.sunnah10.processors.shamela.ShamelaMustadrakProcessorTest;
@@ -26,7 +26,7 @@ import com.canadainc.sunnah10.processors.shamela.mubarak.ShamelaMubarakZuhdProce
 @RunWith(Suite.class)
 @SuiteClasses({ SunnahDotComProcessorTest.class, TypoProcessorTest.class,
 	ShamelaAwaanahProcessorTest.class, ShamelaBazzaarProcessorTest.class, ShamelaBookDownloaderTest.class,
-	ShamelaDarimiProcessorTest.class, ShamelaDawudZuhdProcessorTest.class, ShamelaIbaanahProcessorTest.class,
+	ShamelaDarimiProcessorTest.class, ShamelaStandardProcessorTest.class, ShamelaIbaanahProcessorTest.class,
 	ShamelaIbnMajahNoVowelsProcessorTest.class, ShamelaMustadrakProcessorTest.class,
 	ShamelaSunanNasaiNoVowelsProcessorTest.class, ShamelaSunanNasaiVowelledProcessorTest.class,
 	ShamelaTirmidhiNoVowelsProcessorTest.class, ShamelaUtilsTest.class, ShamelaIrwaProcessorTest.class, ShamelaJaamiProcessorTest.class, ShamelaSilsilaDaifProcessorTest.class,

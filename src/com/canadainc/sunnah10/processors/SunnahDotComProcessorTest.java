@@ -1,8 +1,8 @@
 package com.canadainc.sunnah10.processors;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
+import org.json.simple.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,6 +22,12 @@ public class SunnahDotComProcessorTest
 	@Test
 	public void testPreprocess()
 	{
+		JSONObject j = new JSONObject();
+		j.put("englishURN", "1251710");
+		j.put("hadithNumber", "155");
+
+		s.preprocess(j);
+		assertEquals( "172", j.get("hadithNumber") );
 	}
 
 	@Test
@@ -45,10 +51,54 @@ public class SunnahDotComProcessorTest
 		assertEquals(390, n.inBookNumber);
 	}
 
-	@Test
-	public void testHasGrade()
+
+	public void testIgnored() throws Exception
 	{
+		JSONObject j = new JSONObject();
+		j.put("englishURN", "1262090");
+
+		assertFalse( s.preprocess(j) );
 	}
+
+
+	@Test
+	public void breakUp() throws Exception
+	{
+		SunnahTestUtils.loadAndAssertSize("sunnah_com/english/ibnmajah/12.txt", s, 171);
+
+		Narration first = null;
+		Narration second = null;
+
+		for (Narration n: s.getNarrations())
+		{
+			if (n.hadithNumber.equals("2238")) {
+				first = n;
+			} else if ( n.hadithNumber.equals("2239") ) {
+				second = n;
+			}
+		}
+
+		assertTrue( first.text.equals("It was narrated from Ibn 'Umar that the Prophet (ﷺ) said:\n\"O Allah, bless my nation in their early mornings.\".") );
+		assertTrue( second.text.equals("It was narrated from Abu Hurairah that the Prophet (ﷺ) said: \"Whoever buys a Musarrah, he has the choice (of annulling the deal) for three days. If he returns it, then he must also give a Sa' of dates, not Samra'.\" Meaning wheat.</b>") );
+	}
+
+
+	@Test
+	public void appendToPrev() throws Exception
+	{
+		JSONObject j = new JSONObject();
+		j.put("englishURN", "1290300");
+		j.put("hadithNumber", "2");
+		j.put("hadithText", "Some text");
+
+		s.process(j);
+		assertEquals( 1, s.getNarrations().size() );
+
+		s.preprocess(j);
+		assertEquals( 1, s.getNarrations().size() );
+		assertEquals( "Some text Some text", s.getNarrations().get(0).text );
+	}
+
 
 	@Test
 	public void testGetPageNumber()

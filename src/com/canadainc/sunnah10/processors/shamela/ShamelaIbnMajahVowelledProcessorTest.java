@@ -44,4 +44,24 @@ public class ShamelaIbnMajahVowelledProcessorTest
 				"وَالَّذِي نَفْسِي بِيَدِهِ، لَتُصَبَّنَّ عَلَيْكُمُ الدُّنْيَا",
 				"تَرَكَنَا وَاللَّهِ عَلَى مِثْلِ الْبَيْضَاءِ، لَيْلُهَا وَنَهَارُهَا سَوَاءٌ");
 	}
+
+
+	@Test
+	public void processUndecoratedChapter() throws Exception
+	{
+		SunnahTestUtils.loadAndAssertSize("ibnmajah_vowels/2755.txt", s, 0);
+		SunnahTestUtils.loadAndAssertSize("ibnmajah_vowels/2756.txt", s, 1);
+		Narration narration = s.getNarrations().get(0);
+		assertEquals(new Chapter("بَابُ الْمُظَاهِرِ يُجَامِعُ قَبْلَ أَنْ يُكَفِّرَ", 1), narration.chapter);
+	}
+
+
+	@Test
+	public void pluralChapter() throws Exception
+	{
+		SunnahTestUtils.loadAndAssertSize("ibnmajah_vowels/5145.txt", s, 0);
+		SunnahTestUtils.loadAndAssertSize("ibnmajah_vowels/5146.txt", s, 1);
+		Narration narration = s.getNarrations().get(0);
+		assertEquals(new Chapter("بَابُ الْمُزَاحِ", 1), narration.chapter);
+	}
 }
