@@ -118,4 +118,15 @@ public class SunnahTestUtils
 
 		assertEquals( size, s.getNarrations().size() );
 	}
+	
+	
+	public static Narration getNarration(Processor s, int narrationId)
+	{
+		Narration n = s.getNarrations().stream()
+	            .filter(narration -> narration.id == 1082170)
+	            .findFirst()
+	            .get();
+		
+		return n;
+	}
 }

@@ -51,7 +51,7 @@ public class SunnahDotComProcessorTest
 		assertEquals(390, n.inBookNumber);
 	}
 
-
+	@Test
 	public void testIgnored() throws Exception
 	{
 		JSONObject j = new JSONObject();
@@ -83,6 +83,10 @@ public class SunnahDotComProcessorTest
 	}
 
 
+
+
+
+
 	@Test
 	public void appendToPrev() throws Exception
 	{
@@ -97,6 +101,92 @@ public class SunnahDotComProcessorTest
 		s.preprocess(j);
 		assertEquals( 1, s.getNarrations().size() );
 		assertEquals( "Some text Some text", s.getNarrations().get(0).text );
+	}
+
+	@Test
+	public void rangeReduce()
+	{
+		JSONObject j = new JSONObject();
+		j.put("englishURN", "1002100");
+		j.put("hadithNumber", "2");
+
+		s.preprocess(j);
+		assertEquals( "1", j.get("hadithNumber") );
+
+		j.put("englishURN", "1003540");
+		j.put("hadithNumber", "2");
+		s.preprocess(j);
+		assertEquals( "1", j.get("hadithNumber") );
+
+		j.put("englishURN", "11003540");
+		j.put("hadithNumber", "2");
+		s.preprocess(j);
+		assertEquals( "2", j.get("hadithNumber") );
+	}
+
+	@Test
+	public void merge()
+	{
+		JSONObject j = new JSONObject();
+		j.put("englishURN", "15");
+		j.put("hadithNumber", "1928");
+		j.put("hadithText", "Hello");
+		s.process(j);
+
+		j.put("englishURN", "1071110");
+		j.put("hadithNumber", "1");
+		j.put("hadithText", "Everyone");
+		assertFalse( s.preprocess(j) );
+
+		assertEquals( 1, s.getNarrations().size() );
+		assertEquals( "Hello Everyone", s.getNarrations().get(0).text );
+	}
+
+
+	@Test
+	public void mergeSelf()
+	{
+		JSONObject j = new JSONObject();
+		j.put("englishURN", "15");
+		j.put("hadithNumber", "1928");
+		j.put("hadithText", "Hello");
+		s.process(j);
+
+		j.put("englishURN", "1290300");
+		j.put("hadithNumber", "1928");
+		j.put("hadithText", "Everyone");
+		assertFalse( s.preprocess(j) );
+
+		assertEquals( 1, s.getNarrations().size() );
+		assertEquals( "Hello Everyone", s.getNarrations().get(0).text );
+	}
+	
+	
+	@Test
+	public void testShrouded() throws Exception
+	{
+		SunnahTestUtils.loadAndAssertSize("sunnah_com/english/nasai/21.txt", s, 273);
+		assertEquals("1898", s.getNarrations().get(191).hadithNumber);
+	}
+	
+	
+	@Test
+	public void testHurry() throws Exception
+	{
+		SunnahTestUtils.loadAndAssertSize("sunnah_com/english/nasai/24.txt", s, 467);
+		
+		Narration n = s.getNarrations().stream()
+	            .filter(narration -> narration.id == 1082170)
+	            .findFirst()
+	            .get();
+		assertEquals("3053", n.hadithNumber);
+	}
+	
+	
+	public void testLettered() throws Exception
+	{
+		SunnahTestUtils.loadAndAssertSize("sunnah_com/english/nasai/0.txt", s, 467);
+		assertNull( SunnahTestUtils.getNarration(s, 1039340) );
 	}
 
 

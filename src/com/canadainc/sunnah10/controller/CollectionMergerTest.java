@@ -9,10 +9,13 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.canadainc.sunnah10.processors.Processor;
 import com.canadainc.sunnah10.processors.SunnahTestUtils;
 import com.canadainc.sunnah10.processors.shamela.ShamelaIbnMajahNoVowelsProcessor;
 import com.canadainc.sunnah10.processors.shamela.ShamelaIbnMajahVowelledProcessor;
 import com.canadainc.sunnah10.processors.shamela.ShamelaPopulator;
+import com.canadainc.sunnah10.processors.shamela.ShamelaSunanNasaiNoVowelsProcessor;
+import com.canadainc.sunnah10.processors.shamela.ShamelaSunanNasaiVowelledProcessor;
 
 public class CollectionMergerTest
 {
@@ -27,15 +30,31 @@ public class CollectionMergerTest
 		c = DriverManager.getConnection("jdbc:sqlite:res/sunnah10/collections_source.db");
 	}
 
-	@Test
-	public void merge() throws Exception
+	//@Test
+	public void mergeIbnMajah() throws Exception
 	{
-		ShamelaIbnMajahNoVowelsProcessor commentary = new ShamelaIbnMajahNoVowelsProcessor();
+		Processor commentary = new ShamelaIbnMajahNoVowelsProcessor();
 		ShamelaPopulator sp = new ShamelaPopulator("ibnmajah_no_vowels", commentary);
 		sp.process(c);
 
-		ShamelaIbnMajahVowelledProcessor vowels = new ShamelaIbnMajahVowelledProcessor();
+		Processor vowels = new ShamelaIbnMajahVowelledProcessor();
 		sp = new ShamelaPopulator("ibnmajah_vowels", vowels);
+		sp.process(c);
+
+		CollectionMerger c = new CollectionMerger();
+		c.merge(vowels.getNarrations(), commentary.getNarrations());
+	}
+
+
+	@Test
+	public void mergeNasai() throws Exception
+	{
+		Processor commentary = new ShamelaSunanNasaiNoVowelsProcessor();
+		ShamelaPopulator sp = new ShamelaPopulator("nasai_no_vowels", commentary);
+		sp.process(c);
+
+		Processor vowels = new ShamelaSunanNasaiVowelledProcessor();
+		sp = new ShamelaPopulator("nasai_vowels", vowels);
 		sp.process(c);
 
 		CollectionMerger c = new CollectionMerger();
