@@ -1,4 +1,4 @@
-package com.canadainc.sunnah10;
+package com.canadainc.sunnah10.utils;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -38,7 +38,7 @@ public class FileSystemCollectorTest
 	}
 
 	//@Test
-	public void testWriteToDB() throws Exception
+	public void writeToDB() throws Exception
 	{
 		String fileName = UUID.randomUUID().toString()+".db";
 		Connection c = null;
@@ -84,7 +84,7 @@ public class FileSystemCollectorTest
 		try {
 			c = DriverManager.getConnection("jdbc:sqlite:res/sunnah10/collections_source.db");
 
-			String[] toPort = new String[]{"tirmidhi_vowels"};
+			String[] toPort = new String[]{};
 
 			for (String collection: toPort)
 			{

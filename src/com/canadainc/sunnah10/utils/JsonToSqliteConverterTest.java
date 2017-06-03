@@ -1,4 +1,4 @@
-package com.canadainc.sunnah10;
+package com.canadainc.sunnah10.utils;
 
 import static org.junit.Assert.*;
 

@@ -11,10 +11,10 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.canadainc.sunnah10.controller.SunnahUtils;
 import com.canadainc.sunnah10.processors.Processor;
 import com.canadainc.sunnah10.processors.SunnahTestUtils;
 import com.canadainc.sunnah10.processors.shamela.ShamelaPopulator;
+import com.canadainc.sunnah10.utils.SunnahUtils;
 
 public class ShamelaPopulatorTest
 {

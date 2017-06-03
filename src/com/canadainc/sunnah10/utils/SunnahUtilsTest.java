@@ -1,4 +1,4 @@
-package com.canadainc.sunnah10.controller;
+package com.canadainc.sunnah10.utils;
 
 import static org.junit.Assert.assertEquals;
 
@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.Test;
 
 import com.canadainc.sunnah10.Narration;
+import com.canadainc.sunnah10.utils.SunnahUtils;
 
 public class SunnahUtilsTest
 {
