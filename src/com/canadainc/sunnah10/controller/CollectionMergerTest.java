@@ -11,11 +11,11 @@ import org.junit.Test;
 
 import com.canadainc.sunnah10.processors.Processor;
 import com.canadainc.sunnah10.processors.SunnahTestUtils;
-import com.canadainc.sunnah10.processors.shamela.ShamelaIbnMajahNoVowelsProcessor;
-import com.canadainc.sunnah10.processors.shamela.ShamelaIbnMajahVowelledProcessor;
 import com.canadainc.sunnah10.processors.shamela.ShamelaPopulator;
-import com.canadainc.sunnah10.processors.shamela.ShamelaSunanNasaiNoVowelsProcessor;
-import com.canadainc.sunnah10.processors.shamela.ShamelaSunanNasaiVowelledProcessor;
+import com.canadainc.sunnah10.processors.shamela.shared.ShamelaIbnMajahNoVowelsProcessor;
+import com.canadainc.sunnah10.processors.shamela.shared.ShamelaIbnMajahVowelledProcessor;
+import com.canadainc.sunnah10.processors.shamela.shared.ShamelaSunanNasaiNoVowelsProcessor;
+import com.canadainc.sunnah10.processors.shamela.shared.ShamelaSunanNasaiVowelledProcessor;
 
 public class CollectionMergerTest
 {

@@ -1,4 +1,4 @@
-package com.canadainc.sunnah10.processors.shamela;
+package com.canadainc.sunnah10.processors.shamela.shared;
 
 import static org.junit.Assert.assertEquals;
 
@@ -8,6 +8,7 @@ import org.junit.Test;
 import com.canadainc.sunnah10.Book;
 import com.canadainc.sunnah10.Chapter;
 import com.canadainc.sunnah10.processors.SunnahTestUtils;
+import com.canadainc.sunnah10.processors.shamela.shared.ShamelaSunanNasaiVowelledProcessor;
 
 public class ShamelaSunanNasaiVowelledProcessorTest
 {

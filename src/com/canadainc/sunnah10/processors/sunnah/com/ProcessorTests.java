@@ -1,4 +1,4 @@
-package com.canadainc.sunnah10.processors;
+package com.canadainc.sunnah10.processors.sunnah.com;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -10,11 +10,7 @@ import com.canadainc.sunnah10.processors.shamela.ShamelaBookDownloaderTest;
 import com.canadainc.sunnah10.processors.shamela.ShamelaDarimiProcessorTest;
 import com.canadainc.sunnah10.processors.shamela.ShamelaStandardProcessorTest;
 import com.canadainc.sunnah10.processors.shamela.ShamelaIbaanahProcessorTest;
-import com.canadainc.sunnah10.processors.shamela.ShamelaIbnMajahNoVowelsProcessorTest;
 import com.canadainc.sunnah10.processors.shamela.ShamelaMustadrakProcessorTest;
-import com.canadainc.sunnah10.processors.shamela.ShamelaSunanNasaiNoVowelsProcessorTest;
-import com.canadainc.sunnah10.processors.shamela.ShamelaSunanNasaiVowelledProcessorTest;
-import com.canadainc.sunnah10.processors.shamela.ShamelaTirmidhiNoVowelsProcessorTest;
 import com.canadainc.sunnah10.processors.shamela.ShamelaUtilsTest;
 import com.canadainc.sunnah10.processors.shamela.ShamelaTypoProcessorTest;
 import com.canadainc.sunnah10.processors.shamela.albaani.ShamelaIrwaProcessorTest;
@@ -23,6 +19,10 @@ import com.canadainc.sunnah10.processors.shamela.albaani.ShamelaSilsilaDaifProce
 import com.canadainc.sunnah10.processors.shamela.albaani.ShamelaTargheebProcessorTest;
 import com.canadainc.sunnah10.processors.shamela.mubarak.ShamelaJihadProcessorTest;
 import com.canadainc.sunnah10.processors.shamela.mubarak.ShamelaMubarakZuhdProcessorTest;
+import com.canadainc.sunnah10.processors.shamela.shared.ShamelaIbnMajahNoVowelsProcessorTest;
+import com.canadainc.sunnah10.processors.shamela.shared.ShamelaSunanNasaiNoVowelsProcessorTest;
+import com.canadainc.sunnah10.processors.shamela.shared.ShamelaSunanNasaiVowelledProcessorTest;
+import com.canadainc.sunnah10.processors.shamela.shared.ShamelaTirmidhiNoVowelsProcessorTest;
 
 @RunWith(Suite.class)
 @SuiteClasses({ SunnahDotComProcessorTest.class, ShamelaTypoProcessorTest.class,

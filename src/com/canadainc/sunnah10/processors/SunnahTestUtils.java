@@ -7,7 +7,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Types;
+import java.util.HashMap;
+import java.util.List;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -75,11 +76,11 @@ public class SunnahTestUtils
 		}
 
 		String statement = "SELECT * FROM "+table+" WHERE file_name=?";
-		
+
 		if (tokens.length > 2) {
 			statement += " AND path=?";
 		}
-		
+
 		PreparedStatement ps = c.prepareStatement(statement);
 		ps.setString(1, fileName);
 
@@ -118,15 +119,72 @@ public class SunnahTestUtils
 
 		assertEquals( size, s.getNarrations().size() );
 	}
-	
-	
+
+
 	public static Narration getNarration(Processor s, int narrationId)
 	{
 		Narration n = s.getNarrations().stream()
-	            .filter(narration -> narration.id == 1082170)
-	            .findFirst()
-	            .get();
-		
+				.filter(narration -> narration.id == narrationId)
+				.findFirst()
+				.get();
+
 		return n;
+	}
+
+
+	public static boolean validateSequence(final boolean idBased, List<Narration> narrations)
+	{
+		boolean passed = true;
+
+		for (int i = 0; i < narrations.size()-1; i++)
+		{
+			Narration current = narrations.get(i);
+			Narration next = narrations.get(i+1);
+
+			int nextId = idBased ? next.id : Integer.parseInt(next.hadithNumber);
+			int currentId = idBased ? current.id : Integer.parseInt(current.hadithNumber);
+
+			if (nextId-currentId != 1) {
+				System.err.println("Page (current,next): "+current.pageNumber+","+next.pageNumber+"; IdDiff(current,next): ("+currentId+"; "+nextId+")");
+				System.err.println(current);
+				System.err.println(next);
+				System.err.println();
+				passed = false;
+			}
+		}
+
+		return passed;
+	}
+
+
+	public static boolean validateGrades(Processor p)
+	{
+		HashMap<String, Integer> gradeToCount = new HashMap<>();
+		HashMap<String, Integer> gradeToPage = new HashMap<>();
+		boolean passed = true;
+
+		for (Narration n: p.getNarrations())
+		{
+			if ( n.grading == null && p.hasGrade(n.id) ) {
+				System.err.println("Page "+n.pageNumber+"; NoGrade(current): ("+n.id+")");
+				passed = false;
+			} else if (n.grading != null) {
+				String grading = n.grading.trim();
+				Integer count = gradeToCount.get(grading.trim());
+
+				if (count == null) {
+					count = 0;
+				}
+
+				gradeToCount.put(grading, ++count);
+				gradeToPage.put(grading, n.pageNumber);
+			}
+		}
+
+		for (String key: gradeToCount.keySet()) {
+			System.out.println(key+": "+gradeToCount.get(key)+"; page="+gradeToPage.get(key));
+		}
+
+		return passed;
 	}
 }

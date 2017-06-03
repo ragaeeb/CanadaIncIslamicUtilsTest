@@ -2,6 +2,7 @@ package com.canadainc.sunnah10.processors.shamela;
 
 import static org.junit.Assert.*;
 
+import org.json.simple.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,6 +28,16 @@ public class ShamelaTypoProcessorTest
 		m_typos.addRegexed(1, "<span class=\"red\">[1-9]{1,2} - </span>", "");
 		assertEquals( "", m_typos.process(1, "<span class=\"red\">15 - </span>") );
 	}
+	
+	@Test
+	public void ignore()
+	{
+		m_typos.ignore(100, 200);
+		
+		assertNull( m_typos.process(100, "asdf") );
+		assertEquals( "asdf", m_typos.process(300, "asdf") );
+	}
+	
 
 	@Test
 	public void addNumericListStripperForward()

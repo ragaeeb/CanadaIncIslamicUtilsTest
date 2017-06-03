@@ -1,4 +1,4 @@
-package com.canadainc.sunnah10.processors.shamela;
+package com.canadainc.sunnah10.processors.shamela.shared;
 
 import static org.junit.Assert.*;
 
@@ -9,6 +9,7 @@ import com.canadainc.sunnah10.Book;
 import com.canadainc.sunnah10.Chapter;
 import com.canadainc.sunnah10.Narration;
 import com.canadainc.sunnah10.processors.SunnahTestUtils;
+import com.canadainc.sunnah10.processors.shamela.shared.ShamelaIbnMajahVowelledProcessor;
 
 public class ShamelaIbnMajahVowelledProcessorTest
 {

@@ -1,4 +1,4 @@
-package com.canadainc.sunnah10.processors;
+package com.canadainc.sunnah10.processors.sunnah.com;
 
 import static org.junit.Assert.*;
 
@@ -9,14 +9,16 @@ import org.junit.Test;
 import com.canadainc.sunnah10.Book;
 import com.canadainc.sunnah10.Chapter;
 import com.canadainc.sunnah10.Narration;
+import com.canadainc.sunnah10.processors.SunnahTestUtils;
+import com.canadainc.sunnah10.processors.sunnah.com.AbstractSunnahDotComProcessor;
 
 public class SunnahDotComProcessorTest
 {
-	private SunnahDotComProcessor s;
+	private AbstractSunnahDotComProcessor s;
 
 	@Before
 	public void setUp() throws Exception {
-		s = new SunnahDotComProcessor();
+		s = new AbstractSunnahDotComProcessor();
 	}
 
 	@Test
@@ -160,29 +162,29 @@ public class SunnahDotComProcessorTest
 		assertEquals( 1, s.getNarrations().size() );
 		assertEquals( "Hello Everyone", s.getNarrations().get(0).text );
 	}
-	
-	
+
+
 	@Test
 	public void testShrouded() throws Exception
 	{
 		SunnahTestUtils.loadAndAssertSize("sunnah_com/english/nasai/21.txt", s, 273);
 		assertEquals("1898", s.getNarrations().get(191).hadithNumber);
 	}
-	
-	
+
+
 	@Test
 	public void testHurry() throws Exception
 	{
 		SunnahTestUtils.loadAndAssertSize("sunnah_com/english/nasai/24.txt", s, 467);
-		
+
 		Narration n = s.getNarrations().stream()
-	            .filter(narration -> narration.id == 1082170)
-	            .findFirst()
-	            .get();
+				.filter(narration -> narration.id == 1082170)
+				.findFirst()
+				.get();
 		assertEquals("3053", n.hadithNumber);
 	}
-	
-	
+
+
 	public void testLettered() throws Exception
 	{
 		SunnahTestUtils.loadAndAssertSize("sunnah_com/english/nasai/0.txt", s, 467);

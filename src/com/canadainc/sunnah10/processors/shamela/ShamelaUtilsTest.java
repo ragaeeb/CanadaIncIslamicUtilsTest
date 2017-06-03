@@ -160,6 +160,27 @@ public class ShamelaUtilsTest
 	
 	
 	@Test
+	public void processSimple()
+	{
+		//TODO
+	}
+	
+	
+	@Test
+	public void addIfSignatureMatches()
+	{
+		// TODO
+	}
+	
+	
+	@Test
+	public void getTextNode()
+	{
+		// TODO
+	}
+	
+	
+	@Test
 	public void isHadithNumberValid()
 	{
 		ArrayList<Narration> result = new ArrayList<>();

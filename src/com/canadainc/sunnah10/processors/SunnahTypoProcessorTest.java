@@ -1,7 +1,6 @@
 package com.canadainc.sunnah10.processors;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.canadainc.sunnah10.Narration;
+import com.canadainc.sunnah10.processors.sunnah.com.SunnahTypoProcessor;
 
 public class SunnahTypoProcessorTest
 {
@@ -22,7 +22,7 @@ public class SunnahTypoProcessorTest
 	}
 
 	@Test
-	public void testFixHadithNumber()
+	public void fixHadithNumber()
 	{
 		s.fixHadithNumber(1,233);
 
@@ -33,10 +33,32 @@ public class SunnahTypoProcessorTest
 
 		assertEquals( "233", j.get("hadithNumber") );
 	}
+	
+	
+	@Test
+	public void track()
+	{
+		s.track(100, 2);
+		assertEquals( 2, s.getIndex(100) );
+	}
 
+	
+	@Test
+	public void ignore()
+	{
+		s.ignore(100, 200);
+		
+		JSONObject j = new JSONObject();
+		j.put("englishURN", "100");
+		assertFalse( s.process( j, null) );
+		
+		j.put("englishURN", "1000");
+		assertTrue( s.process( j, null) );
+	}
+	
 
 	@Test
-	public void testMerge()
+	public void merge()
 	{
 		Narration n = new Narration();
 		n.text = "Abc";
@@ -81,7 +103,7 @@ public class SunnahTypoProcessorTest
 	}
 
 	@Test
-	public void testMergeSelf()
+	public void mergeSelf()
 	{
 		Narration n = new Narration();
 		n.text = "Abc";

@@ -1,9 +1,10 @@
-package com.canadainc.sunnah10.processors.shamela;
+package com.canadainc.sunnah10.processors.shamela.shared;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import com.canadainc.sunnah10.processors.SunnahTestUtils;
+import com.canadainc.sunnah10.processors.shamela.shared.ShamelaSunanNasaiNoVowelsProcessor;
 
 public class ShamelaSunanNasaiNoVowelsProcessorTest
 {

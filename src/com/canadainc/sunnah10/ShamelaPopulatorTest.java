@@ -4,34 +4,17 @@ import static org.junit.Assert.assertEquals;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.canadainc.sunnah10.controller.SunnahUtils;
 import com.canadainc.sunnah10.processors.Processor;
-import com.canadainc.sunnah10.processors.SunnahDotComProcessor;
-import com.canadainc.sunnah10.processors.shamela.ShamelaBazzaarProcessor;
-import com.canadainc.sunnah10.processors.shamela.ShamelaContinuedProcessor;
-import com.canadainc.sunnah10.processors.shamela.ShamelaDarimiProcessor;
-import com.canadainc.sunnah10.processors.shamela.ShamelaIbaanahProcessor;
-import com.canadainc.sunnah10.processors.shamela.ShamelaIbnMajahNoVowelsProcessor;
-import com.canadainc.sunnah10.processors.shamela.ShamelaIbnMajahVowelledProcessor;
-import com.canadainc.sunnah10.processors.shamela.ShamelaMustadrakProcessor;
+import com.canadainc.sunnah10.processors.SunnahTestUtils;
 import com.canadainc.sunnah10.processors.shamela.ShamelaPopulator;
-import com.canadainc.sunnah10.processors.shamela.ShamelaStandardProcessor;
-import com.canadainc.sunnah10.processors.shamela.ShamelaSunanNasaiNoVowelsProcessor;
-import com.canadainc.sunnah10.processors.shamela.ShamelaSunanNasaiVowelledProcessor;
-import com.canadainc.sunnah10.processors.shamela.ShamelaTirmidhiNoVowelsProcessor;
-import com.canadainc.sunnah10.processors.shamela.albaani.ShamelaIrwaProcessor;
-import com.canadainc.sunnah10.processors.shamela.albaani.ShamelaJaamiProcessor;
-import com.canadainc.sunnah10.processors.shamela.albaani.ShamelaSilsilaDaifProcessor;
-import com.canadainc.sunnah10.processors.shamela.albaani.ShamelaTargheebProcessor;
-import com.canadainc.sunnah10.processors.shamela.mubarak.ShamelaJihadProcessor;
-import com.canadainc.sunnah10.processors.shamela.mubarak.ShamelaMubarakZuhdProcessor;
 
 public class ShamelaPopulatorTest
 {
@@ -54,186 +37,70 @@ public class ShamelaPopulatorTest
 	public static void tearDownAfterClass() throws Exception {
 		c.close();
 	}
-
-
+	
+	
 	@Test
-	public void awaanah() throws Exception
+	public void process() throws Exception
 	{
-		ShamelaPopulator sp = process("awaanah", new ShamelaContinuedProcessor(), 8682);
-		sp.validateSequence();
-		//sp.validateGrades();
-	}
-
-
-	@Test
-	public void bazzaar() throws Exception {
-		ShamelaPopulator sp = process("bazzaar", new ShamelaBazzaarProcessor(), 10338);
-		sp.validateSequence();
-	}
-
-
-	@Test
-	public void daif() throws Exception
-	{
-		ShamelaPopulator sp = process("silsila_daif", new ShamelaSilsilaDaifProcessor(), 7141);
-		sp.validateGrades();
-	}
-
-
-	@Test
-	public void darimi() throws Exception {
-		process("sunan_darimi", new ShamelaDarimiProcessor(), 3541);
-	}
-
-
-	@Test
-	public void ibaanah() throws Exception {
-		process("ibaanah", new ShamelaIbaanahProcessor(), 3122);
-	}
-
-
-	@Test
-	public void ibnMajahNoVowels() throws Exception {
-		ShamelaPopulator sp = process("ibnmajah_no_vowels", new ShamelaIbnMajahNoVowelsProcessor(), 4341);
-		sp.validateSequence();
-		//sp.validateGrades();
-	}
-
-
-	@Test
-	public void ibnMajahVowels() throws Exception {
-		ShamelaPopulator sp = process("ibnmajah_vowels", new ShamelaIbnMajahVowelledProcessor(), 4341);
-		sp.validateSequence();
-		sp.validateGrades();
-	}
-
-
-	@Test
-	public void irwa() throws Exception {
-		process("irwa", new ShamelaIrwaProcessor(), 2447);
-	}
-
-
-	@Test
-	public void jaami() throws Exception {
-		process("jaami", new ShamelaJaamiProcessor(), 8201);
-	}
-
-
-	@Test
-	public void jihad() throws Exception {
-		process("jihad", new ShamelaJihadProcessor(), 262);
-	}
-
-
-	@Test
-	public void mustadrak() throws Exception {
-		process("mustadrak", new ShamelaMustadrakProcessor(), 8803);
-	}
-
-
-	@Test
-	public void nasaiNoVowels() throws Exception {
-		ShamelaPopulator sp = process("nasai_no_vowels", new ShamelaSunanNasaiNoVowelsProcessor(), 5758);
-		sp.validateSequence();
-		//sp.validateGrades();
-	}
-
-
-	@Test
-	public void nasaiSunnah() throws Exception {
-		Processor p = new SunnahDotComProcessor();
-		ShamelaPopulator sp = new ShamelaPopulator("sunnah_com", "english/nasai", p);
-		sp.process(c);
-
-		assertEquals( 5758, p.getNarrations().size() );
-		sp.validateSequence(false, true);
-	}
-
-
-	@Test
-	public void nasaiVowels() throws Exception {
-		ShamelaPopulator sp = process("nasai_vowels", new ShamelaSunanNasaiVowelledProcessor(), 5758);
-		sp.validateSequence();
-		sp.validateGrades();
-	}
-
-
-	private ShamelaPopulator process(String collection, Processor processor, int expectedSize) throws Exception
-	{
-		ShamelaPopulator sp = new ShamelaPopulator(collection, processor);
-		sp.process(c);
-
-		assertEquals( expectedSize, processor.getNarrations().size() );
-		return sp;
-	}
-
-
-	@Test
-	public void processSunnahDotComIbnMajah() throws Exception {
-		Processor p = new SunnahDotComProcessor();
-		ShamelaPopulator sp = new ShamelaPopulator("sunnah_com", "english/ibnmajah", p);
-		sp.process(c);
-
-		List<Narration> narrations = p.getNarrations();
-
-		Collections.sort(narrations, new Comparator<Narration>()
+		HashMap<String,Integer> map = new HashMap<>();
+		/*map.put("awaanah", 8682);
+		map.put("bazzaar", 10338);
+		map.put("silsila_daif", 7141);
+		map.put("sunan_darimi", 3541);
+		map.put("ibaanah", 3122);
+		map.put("ibnmajah_no_vowels", 4341);
+		map.put("ibnmajah_vowels", 4341);
+		map.put("irwa", 2447);
+		map.put("jaami", 8201);
+		map.put("jihad", 262);
+		map.put("mustadrak", 8803);
+		map.put("nasai_no_vowels", 5758);
+		map.put("nasai_vowels", 5758);
+		map.put("targheeb", 3773);
+		map.put("tirmidhi_no_vowels", 3954);
+		map.put("tirmidhi_vowels", 3939); // 17 total: missing 611, 612, 980, 1823, 1842, 1973, 3078, 3172, 3308, 3374, 3413, 3488, 3515, 3582, 3716, 3767, 3793
+		map.put("zuhd_ahmad", 2379);
+		map.put("zuhd_dawud", 502);
+		map.put("zuhd_mubarak", 2070);
+		map.put("sunnah_com/english/ibnmajah", 4341);
+		map.put("sunnah_com/english/nasai", 5758);
+		map.put("sunnah_com/english/tirmidhi", 3956); */
+		
+		//map.put("sunnah_com/english/abudawud", 5274);
+		map.put("abudawud_no_vowels", 5273);
+		
+		ParserFactory pf = new ParserFactory();
+		
+		for (String key: map.keySet())
 		{
-			@Override
-			public int compare(Narration o1, Narration o2)
+			Processor p = pf.getProcessor(key);
+			String path = null;
+			String collection = key;
+			int index = key.indexOf("/");
+			boolean shamela = index == -1;
+			
+			if (!shamela)
 			{
-				int a = Integer.parseInt(o1.hadithNumber);
-				int b = Integer.parseInt(o2.hadithNumber);
-				return a-b;
+				path = key.substring(index+1);
+				collection = key.substring(0, index);
 			}
-		});
-
-		int i = 0;
-
-		for (Narration n: narrations)
-		{
-			++i;
-			System.out.println(n.hadithNumber);
-
-			if (i != Integer.parseInt(n.hadithNumber) ) {
-				System.err.println("*** BAD: "+n.hadithNumber);
-				break;
-			}
+			
+			ShamelaPopulator sp = new ShamelaPopulator(collection, path, p);
+			sp.process(c);
+			
+			assertEquals( map.get(key).intValue(), p.getNarrations().size() );
+			
+			List<Narration> narrations = SunnahUtils.sort(p.getNarrations(), shamela);
+			SunnahTestUtils.validateSequence(shamela, narrations);
+			//SunnahTestUtils.validateGrades(p);
+			/*
+			for (int i = 0; i < narrations.size(); i++)
+			{
+				if ( !narrations.get(i).hadithNumber.equals( String.valueOf(i+1) ) ) {
+					System.out.println(narrations.get(i));
+					break;
+				}
+			} */
 		}
-	}
-
-
-	@Test
-	public void targheeb() throws Exception {
-		ShamelaPopulator sp = process("targheeb", new ShamelaTargheebProcessor(), 3773);
-		sp.validateSequence();
-		sp.validateGrades();
-	}
-
-
-	@Test
-	public void tirmidhiNoVowels() throws Exception {
-		ShamelaPopulator sp = process("tirmidhi", new ShamelaTirmidhiNoVowelsProcessor(), 3954);
-		sp.validateSequence();
-		sp.validateGrades();
-	}
-
-
-	@Test
-	public void zuhdAhmad() throws Exception {
-		ShamelaPopulator sp = process("zuhd_ahmad", new ShamelaStandardProcessor(), 2379);
-		sp.validateSequence();
-	}
-
-
-	@Test
-	public void zuhdDawud() throws Exception {
-		process("zuhd_dawud", new ShamelaStandardProcessor(), 502);
-	}
-
-
-	@Test
-	public void zuhdMubarak() throws Exception {
-		process("zuhd_mubarak", new ShamelaMubarakZuhdProcessor(), 2070);
 	}
 }
