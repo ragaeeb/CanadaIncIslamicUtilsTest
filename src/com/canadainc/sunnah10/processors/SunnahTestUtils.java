@@ -15,6 +15,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
 import com.canadainc.sunnah10.Narration;
+import com.canadainc.sunnah10.utils.SunnahUtils;
 
 public class SunnahTestUtils
 {
@@ -141,8 +142,8 @@ public class SunnahTestUtils
 			Narration current = narrations.get(i);
 			Narration next = narrations.get(i+1);
 
-			int nextId = idBased ? next.id : Integer.parseInt(next.hadithNumber);
-			int currentId = idBased ? current.id : Integer.parseInt(current.hadithNumber);
+			int nextId = idBased ? next.id : SunnahUtils.parseHadithNumber(next);
+			int currentId = idBased ? current.id : SunnahUtils.parseHadithNumber(current);
 
 			if (nextId-currentId != 1) {
 				System.err.println("Page (current,next): "+current.pageNumber+","+next.pageNumber+"; IdDiff(current,next): ("+currentId+"; "+nextId+")");

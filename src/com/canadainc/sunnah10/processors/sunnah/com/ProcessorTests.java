@@ -25,7 +25,7 @@ import com.canadainc.sunnah10.processors.shamela.shared.ShamelaSunanNasaiVowelle
 import com.canadainc.sunnah10.processors.shamela.shared.ShamelaTirmidhiNoVowelsProcessorTest;
 
 @RunWith(Suite.class)
-@SuiteClasses({ SunnahDotComProcessorTest.class, ShamelaTypoProcessorTest.class,
+@SuiteClasses({ AbstractSunnahDotComProcessorTest.class, ShamelaTypoProcessorTest.class,
 	ShamelaAwaanahProcessorTest.class, ShamelaBazzaarProcessorTest.class, ShamelaBookDownloaderTest.class,
 	ShamelaDarimiProcessorTest.class, ShamelaStandardProcessorTest.class, ShamelaIbaanahProcessorTest.class,
 	ShamelaIbnMajahNoVowelsProcessorTest.class, ShamelaMustadrakProcessorTest.class,

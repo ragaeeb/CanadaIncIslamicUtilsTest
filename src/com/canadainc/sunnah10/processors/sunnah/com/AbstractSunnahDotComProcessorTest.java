@@ -12,7 +12,7 @@ import com.canadainc.sunnah10.Narration;
 import com.canadainc.sunnah10.processors.SunnahTestUtils;
 import com.canadainc.sunnah10.processors.sunnah.com.AbstractSunnahDotComProcessor;
 
-public class SunnahDotComProcessorTest
+public class AbstractSunnahDotComProcessorTest
 {
 	private AbstractSunnahDotComProcessor s;
 

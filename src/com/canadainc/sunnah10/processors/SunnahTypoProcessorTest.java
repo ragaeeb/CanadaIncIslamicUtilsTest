@@ -97,6 +97,11 @@ public class SunnahTypoProcessorTest
 			public List<Narration> getNarrations() {
 				return narrations;
 			}
+
+			@Override
+			public void postProcess()
+			{
+			}
 		});
 
 		assertEquals( "Abc Hello", n.text);
@@ -142,6 +147,11 @@ public class SunnahTypoProcessorTest
 			@Override
 			public List<Narration> getNarrations() {
 				return narrations;
+			}
+
+			@Override
+			public void postProcess()
+			{
 			}
 		});
 
@@ -203,6 +213,11 @@ public class SunnahTypoProcessorTest
 			public List<Narration> getNarrations() {
 				return null;
 			}
+
+			@Override
+			public void postProcess()
+			{
+			}
 		});
 
 		assertEquals( "110", result.get("hadithNumber") );
@@ -210,6 +225,7 @@ public class SunnahTypoProcessorTest
 
 		assertEquals( "111", j.get("hadithNumber") );
 		assertEquals( "Yes We Are Good", j.get("hadithText") );
+		assertEquals( "2", j.get("englishURN") ); // TODO: Must do this!
 	}
 
 
@@ -250,6 +266,11 @@ public class SunnahTypoProcessorTest
 			@Override
 			public List<Narration> getNarrations() {
 				return null;
+			}
+
+			@Override
+			public void postProcess()
+			{
 			}
 		});
 
@@ -302,6 +323,11 @@ public class SunnahTypoProcessorTest
 			@Override
 			public List<Narration> getNarrations() {
 				return narrations;
+			}
+
+			@Override
+			public void postProcess()
+			{
 			}
 		});
 
