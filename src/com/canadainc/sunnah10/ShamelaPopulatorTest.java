@@ -8,17 +8,21 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.canadainc.sunnah10.processors.Processor;
 import com.canadainc.sunnah10.processors.SunnahTestUtils;
+import com.canadainc.sunnah10.processors.shamela.ShamelaContinuedProcessor;
 import com.canadainc.sunnah10.processors.shamela.ShamelaPopulator;
 import com.canadainc.sunnah10.utils.SunnahUtils;
 
 public class ShamelaPopulatorTest
 {
 	private static Connection c;
+	private static Connection output;
+	private ParserFactory pf;
 
 	/**
 	 * @throws java.lang.Exception
@@ -27,6 +31,13 @@ public class ShamelaPopulatorTest
 	public static void setUpBeforeClass() throws Exception {
 		Class.forName( org.sqlite.JDBC.class.getCanonicalName() ); // load the sqlite-JDBC driver using the current class loader
 		c = DriverManager.getConnection("jdbc:sqlite:res/sunnah10/collections_source.db");
+		output = DriverManager.getConnection("jdbc:sqlite:res/sunnah10/translations.db");
+	}
+
+
+	@Before
+	public void setUp() throws Exception {
+		pf = new ParserFactory();
 	}
 
 
@@ -39,29 +50,49 @@ public class ShamelaPopulatorTest
 	}
 
 
+	//@Test
+	public void write() throws Exception
+	{
+		final String collection = "jaami";
+		Processor p = pf.getProcessor(collection);
+		ShamelaPopulator sp = new ShamelaPopulator(collection, null, p);
+		sp.process(c);
+
+		List<Narration> narrations = SunnahUtils.sort(p.getNarrations(), true);
+		SunnahTestUtils.validateSequence(true, narrations);
+
+		Connection c2 = DriverManager.getConnection("jdbc:sqlite:res/sunnah10/"+collection+".db");
+		sp.write(c2);
+		c2.close();
+	}
+
+
 	@Test
 	public void process() throws Exception
 	{
 		HashMap<String,Integer> map = new HashMap<>();
-		/*map.put("awaanah", 8682);
-		map.put("bazzaar", 10338);
-		map.put("silsila_daif", 7141);
+		/*map.put("awaanah", 8687);
+		map.put("bazzaar", 10380);
 		map.put("sunan_darimi", 3541);
 		map.put("ibaanah", 3122);
 
 		map.put("irwa", 2447);
-		map.put("jaami", 8201);
+		map.put("jaami", 8200);
 		map.put("jihad", 262);
 		map.put("mustadrak", 8803);
-
-		map.put("nasai_no_vowels", 5758);
-		map.put("nasai_vowels", 5758);
-		map.put("sunnah_com/english/nasai", 5758);
 
 		map.put("targheeb", 3773);
 		map.put("zuhd_ahmad", 2379);
 		map.put("zuhd_dawud", 502);
 		map.put("zuhd_mubarak", 2070); */
+		//map.put("saleh", 292);
+		map.put("taarikh_baghdadi", 7768);
+		//map.put("muntadhim", 7768);
+		/*
+		 * map.put("silsila_daif", 7141);
+		map.put("nasai_no_vowels", 5758);
+		map.put("nasai_vowels", 5758);
+		map.put("sunnah_com/english/nasai", 5758);
 
 		//map.put("sunnah_com/english/tirmidhi", 3956);		
 		//map.put("tirmidhi_no_vowels", 3954);
@@ -70,7 +101,7 @@ public class ShamelaPopulatorTest
 		//map.put("sunnah_com/english/abudawud", 5274);
 		//map.put("abudawud_no_vowels", 5273);
 		//map.put("sunnah_com/arabic/abudawud", 5276);
-		
+
 		//map.put("sunnah_com/arabic/ibnmajah", 4341);
 		//map.put("sunnah_com/arabic/qudsi40", 40);
 		//map.put("sunnah_com/english/qudsi40", 40);
@@ -79,21 +110,19 @@ public class ShamelaPopulatorTest
 
 		//map.put("sunnah_com/arabic/riyadussaliheen", 1895);
 		//map.put("sunnah_com/english/riyadussaliheen", 1895);
-		
+
 		//map.put("sunnah_com/english/malik", 1895);
 		//map.put("sunnah_com/arabic/malik", 1895);
 		//map.put("sunnah_com/arabic/bukhari", 7291);
 		//map.put("sunnah_com/english/bukhari", 7290);
-		
+
 		//map.put("sunnah_com/arabic/muslim", 7470);
 		//map.put("sunnah_com/english/muslim", 7470);
-		
+
 		//map.put("ibnmajah_no_vowels", 4341);
 		//map.put("ibnmajah_vowels", 4341);
 		//map.put("sunnah_com/english/ibnmajah", 4341);
-		map.put("sunnah_com/arabic/ibnmajah", 4341);
-
-		ParserFactory pf = new ParserFactory();
+		map.put("sunnah_com/arabic/ibnmajah", 4341); */
 
 		for (String key: map.keySet())
 		{
@@ -111,7 +140,15 @@ public class ShamelaPopulatorTest
 
 			ShamelaPopulator sp = new ShamelaPopulator(collection, path, p);
 			sp.process(c);
+			//sp.write(output);
+			
+			/*for (Narration n: p.getNarrations() ) {
+				if (n.text.contains("سُفْيَانُ") && n.text.contains("مَسَاجِ") ) {
+					System.out.println(n.id);
+				}
+			} */
 
+			System.out.println(key);
 			assertEquals( map.get(key).intValue(), p.getNarrations().size() );
 
 			//List<Narration> narrations = SunnahUtils.sort(p.getNarrations(), shamela);

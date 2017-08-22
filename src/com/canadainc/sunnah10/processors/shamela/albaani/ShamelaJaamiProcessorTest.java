@@ -1,13 +1,11 @@
 package com.canadainc.sunnah10.processors.shamela.albaani;
 
-import java.io.IOException;
-
 import org.junit.Before;
 import org.junit.Test;
 
+import com.canadainc.sunnah10.Narration;
 import com.canadainc.sunnah10.processors.SunnahTestUtils;
 import com.canadainc.sunnah10.processors.shamela.ShamelaProcessor;
-import com.canadainc.sunnah10.processors.shamela.albaani.ShamelaJaamiProcessor;
 
 public class ShamelaJaamiProcessorTest
 {
@@ -70,8 +68,8 @@ public class ShamelaJaamiProcessorTest
 				new String[]{"حم، م، د، ن، ابن أبي شيبة، هق"},
 				"سووا القبور على وجه الأرض إذا دفنتم الموتى");
 	}
-	
-	
+
+
 	@Test
 	public void testTypos3() throws Exception
 	{
@@ -81,7 +79,7 @@ public class ShamelaJaamiProcessorTest
 				"الشرك فيكم أخفى من دبيب النمل وسأدلك على شيء");
 	}
 
-	
+
 	@Test
 	public void testMixed() throws Exception
 	{
@@ -90,8 +88,8 @@ public class ShamelaJaamiProcessorTest
 				new String[]{"النضير 1196، الصحيحة 545"},
 				"الناس فينمي خيرا ويقول خيرا");
 	}
-	
-	
+
+
 	@Test
 	public void testMixed2() throws Exception
 	{
@@ -100,7 +98,7 @@ public class ShamelaJaamiProcessorTest
 				new String[]{"عائشة. الصحيحة 1048"},
 				"لصبيكم هذا يبكي؟ هلا استرقيتم له من العين");
 	}
-	
+
 
 	@Test
 	public void testUnderscored() throws Exception
@@ -110,8 +108,28 @@ public class ShamelaJaamiProcessorTest
 				new String[]{"عن أنس. مختصر مسلم"},
 				"رأيتم المداحين فاحثوا");
 	}
-	
-	
+
+
+	@Test
+	public void testNull() throws Exception
+	{
+		SunnahTestUtils.loadAndAssertSize("jaami/0608.txt", s, 3);
+	}
+
+
+	@Test
+	public void testContinuation() throws Exception
+	{
+		SunnahTestUtils.loadAndAssertSize("jaami/0206.txt", s, 7);
+		SunnahTestUtils.loadAndAssertSize("jaami/0207.txt", s, 14);
+		Narration n = SunnahTestUtils.getNarration(s, 1247);
+
+		SunnahTestUtils.assertCommentary(n, 1247, "صحيح",
+				new String[]{"الصحيحة 1535: عد، ابن عساكر"},
+				"الزم بيتك");
+	}
+
+
 	@Test
 	public void testPlainGrade() throws Exception
 	{

@@ -18,7 +18,7 @@ public class JsonToSqliteConverterTest
 	@Test
 	public void testConvert() throws Exception
 	{
-		JsonToSqliteConverter j = new JsonToSqliteConverter("res/sunnah10/x/assets/data");
+		JsonToSqliteConverter j = new JsonToSqliteConverter("/Users/rhaq/workspace/resources/albaani_app/assets/data");
 		j.convert();
 	}
 }

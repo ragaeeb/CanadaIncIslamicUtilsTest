@@ -84,7 +84,7 @@ public class FileSystemCollectorTest
 		try {
 			c = DriverManager.getConnection("jdbc:sqlite:res/sunnah10/collections_source.db");
 
-			String[] toPort = new String[]{"khuzayma"};
+			String[] toPort = new String[]{"bayaan_tabayeen", "kabaair"};
 
 			for (String collection: toPort)
 			{
