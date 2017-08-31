@@ -15,7 +15,7 @@ public class ShamelaAwaanahProcessorTest
 
 	@Before
 	public void setUp() throws Exception {
-		s = new ShamelaContinuedProcessor();
+		s = new ShamelaAwaanahProcessor();
 	}
 
 	@Test

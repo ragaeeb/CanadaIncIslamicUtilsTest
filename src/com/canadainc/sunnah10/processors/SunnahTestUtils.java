@@ -145,7 +145,7 @@ public class SunnahTestUtils
 			int nextId = idBased ? next.id : SunnahUtils.parseHadithNumber(next);
 			int currentId = idBased ? current.id : SunnahUtils.parseHadithNumber(current);
 
-			if (nextId-currentId != 1) {
+			if (nextId-currentId != 1/* && (nextId-currentId != 0)*/) {
 				System.err.println("Page (current,next): "+current.pageNumber+","+next.pageNumber+"; IdDiff(current,next): ("+currentId+"; "+nextId+")");
 				System.err.println(current);
 				System.err.println(next);
