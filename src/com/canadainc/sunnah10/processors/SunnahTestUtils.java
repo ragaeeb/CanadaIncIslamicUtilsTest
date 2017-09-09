@@ -23,26 +23,27 @@ public class SunnahTestUtils
 
 	public static void assertNarration(Narration n, int id, String grade, String... bodies)
 	{
-		assertEquals(id, n.id);
+		assertBody(n, id, bodies);
 		assertEquals(grade, n.grading);
+	}
+
+	
+	public static void assertBody(Narration n, int id, String... bodies)
+	{
+		assertEquals(id, n.id);
 
 		for (String body: bodies) {
 			assertTrue( n.text.contains(body) );
 		}
 	}
-
+	
 
 	public static void assertCommentary(Narration n, int id, String grade, String[] commentaries, String... bodies)
 	{
-		assertEquals(id, n.id);
-		assertEquals(grade, n.grading);
+		assertNarration(n, id, grade, bodies);
 
 		for (String commentary: commentaries) {
 			assertTrue( n.commentary.contains(commentary) );
-		}
-
-		for (String body: bodies) {
-			assertTrue( n.text.contains(body) );
 		}
 	}
 
@@ -146,11 +147,13 @@ public class SunnahTestUtils
 			int currentId = idBased ? current.id : SunnahUtils.parseHadithNumber(current);
 
 			if (nextId-currentId != 1/* && (nextId-currentId != 0)*/) {
-				System.err.println("Page (current,next): "+current.pageNumber+","+next.pageNumber+"; IdDiff(current,next): ("+currentId+"; "+nextId+")");
+				System.err.println("Page (current,next): "+current.pageNumber+", "+next.pageNumber+"; IdDiff(current,next): ("+currentId+"; "+nextId+")");
 				System.err.println(current);
 				System.err.println(next);
 				System.err.println();
 				passed = false;
+			} else if (current.id == 0) {
+				System.err.println("InvalidID: "+current.pageNumber);
 			}
 		}
 

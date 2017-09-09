@@ -15,7 +15,7 @@ import java.util.UUID;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.canadainc.islamicutils.io.DBUtils;
+import com.canadainc.common.io.DBUtils;
 
 public class FileSystemCollectorTest
 {
@@ -75,6 +75,25 @@ public class FileSystemCollectorTest
 			DBUtils.cleanUp(fileName);
 		}
 	}
+	
+	//@Test
+	public void fixCorruptions() throws Exception
+	{
+		Connection c = null;
+
+		try {
+			c = DriverManager.getConnection("jdbc:sqlite:res/sunnah10/collections_source.db");
+
+			FileSystemCollector fsc = new FileSystemCollector("/Users/rhaq/workspace/resources/taleeqat_hisaan");
+			fsc.fixCorruption(c, 641, 157,163,165,166,171,173,174,179,180,183,184,187,200,203,204,217,218,220,222,228,231,234);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (c != null) {
+				c.close();
+			}
+		}
+	}
 
 	@Test
 	public void portCollections() throws Exception
@@ -84,7 +103,7 @@ public class FileSystemCollectorTest
 		try {
 			c = DriverManager.getConnection("jdbc:sqlite:res/sunnah10/collections_source.db");
 
-			String[] toPort = new String[]{"nasai_kubra", "ibn_taymiyyah_kabeer"};
+			String[] toPort = new String[]{"musnad_ahmad"};
 
 			for (String collection: toPort)
 			{

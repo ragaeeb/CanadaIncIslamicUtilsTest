@@ -14,8 +14,10 @@ import org.junit.Test;
 
 import com.canadainc.sunnah10.processors.Processor;
 import com.canadainc.sunnah10.processors.SunnahTestUtils;
+import com.canadainc.sunnah10.processors.shamela.DatabasePopulator;
 import com.canadainc.sunnah10.processors.shamela.ShamelaPopulator;
 import com.canadainc.sunnah10.processors.shamela.SunnahComPopulator;
+import com.canadainc.sunnah10.processors.sunnah.com.AbstractSunnahDotComProcessor;
 import com.canadainc.sunnah10.utils.SunnahUtils;
 
 public class ShamelaPopulatorTest
@@ -55,7 +57,7 @@ public class ShamelaPopulatorTest
 	{
 		final String collection = "jaami";
 		Processor p = pf.getProcessor(collection);
-		ShamelaPopulator sp = new ShamelaPopulator(collection, null, p);
+		DatabasePopulator sp = new ShamelaPopulator(collection, null, p);
 		sp.process(c);
 
 		List<Narration> narrations = SunnahUtils.sort(p.getNarrations(), true);
@@ -82,7 +84,7 @@ public class ShamelaPopulatorTest
 		for (String key: map.keySet())
 		{
 			Processor p = pf.getProcessor(key);
-			ShamelaPopulator sp = new ShamelaPopulator(key, null, p);
+			DatabasePopulator sp = new ShamelaPopulator(key, null, p);
 			sp.process(c);
 			sp.write(output);
 
@@ -92,15 +94,14 @@ public class ShamelaPopulatorTest
 	}
 
 
-	//@Test
+	@Test
 	public void sunnahCom() throws Exception
 	{
 		HashMap<String,Integer> map = new HashMap<>();
 		//map.put("ibnmajah", 4341);
 		//map.put("nasai", 5758);
 		//map.put("tirmidhi", 3956);
-
-		//map.put("sunnah_com/arabic/abudawud", 5276);
+		//map.put("abudawud", 5274);
 
 		//map.put("sunnah_com/arabic/qudsi40", 40);
 		//map.put("sunnah_com/english/qudsi40", 40);
@@ -122,23 +123,25 @@ public class ShamelaPopulatorTest
 		for (String key: map.keySet())
 		{
 			Processor p = pf.getProcessor(key);
-			ShamelaPopulator sp = new SunnahComPopulator(key, p);
+			DatabasePopulator sp = new SunnahComPopulator(key, (AbstractSunnahDotComProcessor)p);
 			sp.process(c);
 			sp.write(output);
 
 			List<Narration> narrations = SunnahUtils.sort(p.getNarrations(), false);
 			SunnahTestUtils.validateSequence(false, narrations);
+			//SunnahTestUtils.validateGrades(p);
 		}
 	}
 
 
-	@Test
+	//@Test
 	public void process() throws Exception
 	{
 		boolean write = true;
 
 		HashMap<String,Integer> map = new HashMap<>();
 		//map.put("awaanah", 8687);
+		//map.put("baghdadi_akhlaaq", 1908);
 		//map.put("bayhaqi_kubra", 21946);
 		//map.put("bayhaqi_shuab_eemaan", 10747);
 		//map.put("bidah_waddah", 292);
@@ -147,15 +150,23 @@ public class ShamelaPopulatorTest
 		//map.put("dunya_gheeba", 160);
 		//map.put("dunya_dhamm", 497);
 		//map.put("dunya_naar", 262);
+		//map.put("dunya_samt", 750);
 		//map.put("dunya_tawbah", 208);
+		//map.put("fadaail_sahaaba", 1962);
+		//map.put("fawaaid_tamam", 1797);
 		//map.put("ibaanah_kubra", 3122);
 		//map.put("ilm_aml", 201);
 		//map.put("jaami_fadl", 2437);
 		//map.put("jihad", 262);
 		//map.put("laalikaaee", 2779);
+		//map.put("mishkaat_masaabeeh", 6282);
+		//map.put("muntadhim", 7768);
 		//map.put("mussannaf_abdurazzaq", 19403);
 		//map.put("musannaf_shaybah", 37934);
+		//map.put("musnad_ahmad_indexed", 27629);
 		//map.put("musnad_bazzaar", 10380);
+		//map.put("musnad_shihaab", 1499);
+		//map.put("musnad_yalaa", 7566);
 		//map.put("mustadrak", 8803);
 		//map.put("nasai_kubra", 11947);
 		//map.put("qasr_amr", 349);
@@ -166,22 +177,23 @@ public class ShamelaPopulatorTest
 		//map.put("saheeh_targheeb", 3773);
 		//map.put("silsila_daif", 7141);
 		//map.put("sunan_darimi", 3541);
+		//map.put("sunnah_aasim", 1519);
 		//map.put("sunnah_khallal", 1823);
+		//map.put("sunnah_hanbal", 1548);
 		//map.put("taarikh_baghdadi", 7782);
 		//map.put("tabarani_awsat", 9491);
 		//map.put("tabarani_mujam_kabir", 13644);
-		map.put("tanbeeh_ghafileen", 962);
+		map.put("taleeqat_hisaan", 7447);
+		//map.put("tanbeeh_ghafileen", 929);
 		//map.put("zuhd_ahmad", 2379);
 		//map.put("zuhd_dawud", 502);
 		//map.put("zuhd_mubarak", 2070);
 		//map.put("bayhaqi_kubra", 21946);
-		//map.put("taarikh_baghdadi", 7768);
-		//map.put("muntadhim", 7768);
 
 		for (String key: map.keySet())
 		{
 			Processor p = pf.getProcessor(key);
-			ShamelaPopulator sp = new ShamelaPopulator(key, null, p);
+			DatabasePopulator sp = new ShamelaPopulator(key, null, p);
 			sp.process(c);
 
 			if (write) {
@@ -192,6 +204,7 @@ public class ShamelaPopulatorTest
 
 			List<Narration> narrations = SunnahUtils.sort(p.getNarrations(), true);
 			SunnahTestUtils.validateSequence(true, narrations);
+			//SunnahTestUtils.validateGrades(p);
 		}
 	}
 }

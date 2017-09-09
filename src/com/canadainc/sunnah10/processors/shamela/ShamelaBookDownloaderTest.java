@@ -19,7 +19,7 @@ import java.util.UUID;
 
 import org.junit.Test;
 
-import com.canadainc.islamicutils.io.DBUtils;
+import com.canadainc.common.io.DBUtils;
 import com.canadainc.sunnah10.utils.FileSystemCollector;
 
 public class ShamelaBookDownloaderTest

@@ -15,6 +15,7 @@ import org.junit.Test;
 import com.canadainc.sunnah10.Narration;
 import com.canadainc.sunnah10.processors.Processor;
 import com.canadainc.sunnah10.processors.SunnahTestUtils;
+import com.canadainc.sunnah10.processors.shamela.DatabasePopulator;
 import com.canadainc.sunnah10.processors.shamela.ShamelaPopulator;
 import com.canadainc.sunnah10.processors.sunnah.com.IbnMajahProcessor;
 import com.canadainc.sunnah10.utils.SunnahUtils;
@@ -35,7 +36,7 @@ public class CommentaryBasedMergerTest
 		Connection c = DriverManager.getConnection("jdbc:sqlite:res/sunnah10/collections_source.db");
 		
 		IbnMajahProcessor imp = new IbnMajahProcessor();
-		ShamelaPopulator sp = new ShamelaPopulator("sunnah_com", "english/ibnmajah", imp);
+		DatabasePopulator sp = new ShamelaPopulator("sunnah_com", "english/ibnmajah", imp);
 		sp.process(c);
 		
 		Map<Integer,Integer> translations = imp.getTranslations();
