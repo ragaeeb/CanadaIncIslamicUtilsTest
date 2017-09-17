@@ -102,23 +102,13 @@ public class ShamelaPopulatorTest
 		//map.put("nasai", 5758);
 		//map.put("tirmidhi", 3956);
 		//map.put("abudawud", 5274);
-
-		//map.put("sunnah_com/arabic/qudsi40", 40);
-		//map.put("sunnah_com/english/qudsi40", 40);
-		//map.put("sunnah_com/english/nawawi40", 42);
-		//map.put("sunnah_com/arabic/nawawi40", 42);
-
-		//map.put("sunnah_com/arabic/riyadussaliheen", 1895);
-		//map.put("sunnah_com/english/riyadussaliheen", 1895);
-
-		//map.put("sunnah_com/english/malik", 1895);
-		//map.put("sunnah_com/arabic/malik", 1895);
-		//map.put("sunnah_com/arabic/bukhari", 7291);
-		//map.put("sunnah_com/english/bukhari", 7290);
-
-		//map.put("sunnah_com/arabic/muslim", 7470);
-		//map.put("sunnah_com/english/muslim", 7470);
-		//map.put("sunnah_com/english/abudawud", 5274);
+		//map.put("nawawi40", 42);
+		//map.put("qudsi40", 40);
+		//map.put("malik", 1895);
+		//map.put("bukhari", 7291);
+		//map.put("muslim", 7470);
+		//map.put("riyadussaliheen", 1896);
+		//map.put("adab", 1895);
 
 		for (String key: map.keySet())
 		{
@@ -134,7 +124,7 @@ public class ShamelaPopulatorTest
 	}
 
 
-	//@Test
+	@Test
 	public void process() throws Exception
 	{
 		boolean write = true;
@@ -142,22 +132,36 @@ public class ShamelaPopulatorTest
 		HashMap<String,Integer> map = new HashMap<>();
 		//map.put("awaanah", 8687);
 		//map.put("baghdadi_akhlaaq", 1908);
+		//map.put("baghdadi_mutafaqqih", 1881);
 		//map.put("bayhaqi_kubra", 21946);
 		//map.put("bayhaqi_shuab_eemaan", 10747);
 		//map.put("bidah_waddah", 292);
-		//map.put("jaami_sagheer_daif", 6359);
 		//map.put("daynuree_mujaalasah", 3816);
 		//map.put("dunya_gheeba", 160);
 		//map.put("dunya_dhamm", 497);
+		//map.put("dunya_hamm_huzn", 179);
+		//map.put("dunya_ikhlaas", 53);
+		//map.put("dunya_iyaal", 673);
+		//map.put("dunya_jannah", 348);
 		//map.put("dunya_naar", 262);
+		//map.put("dunya_quboor", 274);
+		//map.put("dunya_rida", 103);
+		//map.put("dunya_sabr", 195);
 		//map.put("dunya_samt", 750);
+		//map.put("dunya_shukr", 206);
 		//map.put("dunya_tawbah", 208);
+		//map.put("dunya_tawwakul", 59);
+		//map.put("dunya_wara", 231);
+		//map.put("dunya_zuhd", 561);
 		//map.put("fadaail_sahaaba", 1962);
+		//map.put("fath_albari", 4960);
 		//map.put("fawaaid_tamam", 1797);
 		//map.put("ibaanah_kubra", 3122);
 		//map.put("ilm_aml", 201);
 		//map.put("jaami_fadl", 2437);
+		//map.put("jaami_sagheer_daif", 6359);
 		//map.put("jihad", 262);
+		//map.put("khalq_ibaad", 283);
 		//map.put("laalikaaee", 2779);
 		//map.put("mishkaat_masaabeeh", 6282);
 		//map.put("muntadhim", 7768);
@@ -183,11 +187,12 @@ public class ShamelaPopulatorTest
 		//map.put("taarikh_baghdadi", 7782);
 		//map.put("tabarani_awsat", 9491);
 		//map.put("tabarani_mujam_kabir", 13644);
-		map.put("taleeqat_hisaan", 7447);
+		//map.put("taleeqat_hisaan", 7447);
 		//map.put("tanbeeh_ghafileen", 929);
 		//map.put("zuhd_ahmad", 2379);
 		//map.put("zuhd_dawud", 502);
 		//map.put("zuhd_mubarak", 2070);
+		//map.put("zuhd_wakee", 539);
 		//map.put("bayhaqi_kubra", 21946);
 
 		for (String key: map.keySet())

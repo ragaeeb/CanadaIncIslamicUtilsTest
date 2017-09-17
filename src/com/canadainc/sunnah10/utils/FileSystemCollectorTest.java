@@ -103,7 +103,7 @@ public class FileSystemCollectorTest
 		try {
 			c = DriverManager.getConnection("jdbc:sqlite:res/sunnah10/collections_source.db");
 
-			String[] toPort = new String[]{"musnad_ahmad"};
+			String[] toPort = new String[]{"dunya_tawwakul"};
 
 			for (String collection: toPort)
 			{

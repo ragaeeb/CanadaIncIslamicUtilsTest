@@ -134,7 +134,7 @@ public class DictionaryTest
 		d.add("No talk to people is lawful", "No talk to people in lawful");
 		d.add("O Allah grant pardon even to his hands", "O Allah I grant pardon even to his hands");
 		d.add("Of Judgment", "Ofjudgement");
-		d.add(" oyu ", " you ");
+		d.add(" you ", " oyu ");
 		d.add("prescribed", "prescribd");
 		d.add("pronounced", "pro- nounced");
 		d.add("pronounces", "pro- nounces");

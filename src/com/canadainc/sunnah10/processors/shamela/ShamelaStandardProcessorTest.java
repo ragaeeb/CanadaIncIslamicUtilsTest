@@ -11,7 +11,7 @@ public class ShamelaStandardProcessorTest
 	
 	@Before
 	public void setUp() throws Exception {
-		s = new ShamelaStandardProcessor();
+		s = new AbstractShamelaProcessor();
 	}
 	
 	@Test

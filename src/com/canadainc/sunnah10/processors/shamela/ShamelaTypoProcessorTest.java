@@ -1,8 +1,8 @@
 package com.canadainc.sunnah10.processors.shamela;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
-import org.json.simple.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -78,7 +78,14 @@ public class ShamelaTypoProcessorTest
 		assertEquals( "<span class=\"red\">1</span>", ShamelaTypoProcessor.decorate("1") );
 	}
 
-
+	@Test
+	public void clearAfter()
+	{
+		m_typos.clearAfter(1, "cool");
+		assertEquals( "this is what is cool", m_typos.process(1, "this is what is cool about it") );
+	}
+	
+	
 	@Test
 	public void process() {
 		assertEquals( "hello", m_typos.process(1, "hello") );
