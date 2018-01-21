@@ -75,7 +75,7 @@ public class FileSystemCollectorTest
 			DBUtils.cleanUp(fileName);
 		}
 	}
-	
+
 	//@Test
 	public void fixCorruptions() throws Exception
 	{
@@ -94,6 +94,26 @@ public class FileSystemCollectorTest
 			}
 		}
 	}
+	
+	
+	//@Test
+	public void exportTables() throws Exception
+	{
+		Connection c = null;
+
+		try {
+			c = DriverManager.getConnection("jdbc:sqlite:res/sunnah10/collections_source.db");
+
+			FileSystemCollector fsc = new FileSystemCollector(null);
+			fsc.exportTables(c);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (c != null) {
+				c.close();
+			}
+		}
+	}
 
 	@Test
 	public void portCollections() throws Exception
@@ -101,15 +121,25 @@ public class FileSystemCollectorTest
 		Connection c = null;
 
 		try {
-			c = DriverManager.getConnection("jdbc:sqlite:res/sunnah10/collections_source.db");
-
-			String[] toPort = new String[]{"dunya_tawwakul"};
+			String[] toPort = new String[]{"12445"};
 
 			for (String collection: toPort)
 			{
+				File f = new File("/Users/rhaq/workspace/resources/raw/"+collection+".db");
+				
+				if ( f.exists() ) {
+					f.delete();
+				}
+				
+				f.createNewFile();
+				
+				c = DriverManager.getConnection("jdbc:sqlite:"+f.getPath());
+				
 				FileSystemCollector fsc = new FileSystemCollector("/Users/rhaq/workspace/resources/"+collection);
 				fsc.collect();
 				fsc.writeToDB(c);
+				
+				c.close();
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();

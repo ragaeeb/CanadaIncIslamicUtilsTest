@@ -27,7 +27,7 @@ public class SunnahTestUtils
 		assertEquals(grade, n.grading);
 	}
 
-	
+
 	public static void assertBody(Narration n, int id, String... bodies)
 	{
 		assertEquals(id, n.id);
@@ -36,7 +36,7 @@ public class SunnahTestUtils
 			assertTrue( n.text.contains(body) );
 		}
 	}
-	
+
 
 	public static void assertCommentary(Narration n, int id, String grade, String[] commentaries, String... bodies)
 	{
@@ -74,10 +74,10 @@ public class SunnahTestUtils
 		String path = tokens.length > 2 ? file.substring( file.indexOf("/")+1, file.lastIndexOf("/") ) : "";
 
 		if (c == null) {
-			c = DriverManager.getConnection("jdbc:sqlite:res/sunnah10/collections_source.db");
+			c = DriverManager.getConnection("jdbc:sqlite:/Users/rhaq/workspace/resources/raw/"+table+".db");
 		}
 
-		String statement = "SELECT * FROM "+table+" WHERE file_name=?";
+		String statement = "SELECT * FROM raw WHERE file_name=?";
 
 		if (tokens.length > 2) {
 			statement += " AND path=?";

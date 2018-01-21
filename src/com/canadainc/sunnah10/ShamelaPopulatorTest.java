@@ -130,70 +130,34 @@ public class ShamelaPopulatorTest
 		boolean write = true;
 
 		HashMap<String,Integer> map = new HashMap<>();
-		//map.put("awaanah", 8687);
-		//map.put("baghdadi_akhlaaq", 1908);
 		//map.put("baghdadi_mutafaqqih", 1881);
-		//map.put("bayhaqi_kubra", 21946);
-		//map.put("bayhaqi_shuab_eemaan", 10747);
+		//map.put("bayhaqi_kubra", 21949);
 		//map.put("bidah_waddah", 292);
 		//map.put("daynuree_mujaalasah", 3816);
-		//map.put("dunya_gheeba", 160);
-		//map.put("dunya_dhamm", 497);
-		//map.put("dunya_hamm_huzn", 179);
-		//map.put("dunya_ikhlaas", 53);
-		//map.put("dunya_iyaal", 673);
-		//map.put("dunya_jannah", 348);
-		//map.put("dunya_naar", 262);
-		//map.put("dunya_quboor", 274);
-		//map.put("dunya_rida", 103);
-		//map.put("dunya_sabr", 195);
-		//map.put("dunya_samt", 750);
-		//map.put("dunya_shukr", 206);
-		//map.put("dunya_tawbah", 208);
-		//map.put("dunya_tawwakul", 59);
-		//map.put("dunya_wara", 231);
-		//map.put("dunya_zuhd", 561);
 		//map.put("fadaail_sahaaba", 1962);
 		//map.put("fath_albari", 4960);
-		//map.put("fawaaid_tamam", 1797);
+		//map.put("hilya_awliyah", 16741);
 		//map.put("ibaanah_kubra", 3122);
-		//map.put("ilm_aml", 201);
-		//map.put("jaami_fadl", 2437);
 		//map.put("jaami_sagheer_daif", 6359);
-		//map.put("jihad", 262);
 		//map.put("khalq_ibaad", 283);
-		//map.put("laalikaaee", 2779);
 		//map.put("mishkaat_masaabeeh", 6282);
+		//map.put("mukhtasar_shamaail", 329);
 		//map.put("muntadhim", 7768);
-		//map.put("mussannaf_abdurazzaq", 19403);
-		//map.put("musannaf_shaybah", 37934);
-		//map.put("musnad_ahmad_indexed", 27629);
-		//map.put("musnad_bazzaar", 10380);
-		//map.put("musnad_shihaab", 1499);
-		//map.put("musnad_yalaa", 7566);
-		//map.put("mustadrak", 8803);
-		//map.put("nasai_kubra", 11947);
-		//map.put("qasr_amr", 349);
-		//map.put("saheeh_hibbaan", 7539);
 		//map.put("saheeh_irwa", 2447);
 		//map.put("saheeh_jaami", 8200);
-		//map.put("saheeh_khuzayma", 3069);
 		//map.put("saheeh_targheeb", 3773);
 		//map.put("silsila_daif", 7141);
 		//map.put("sunan_darimi", 3541);
 		//map.put("sunnah_aasim", 1519);
 		//map.put("sunnah_khallal", 1823);
-		//map.put("sunnah_hanbal", 1548);
 		//map.put("taarikh_baghdadi", 7782);
-		//map.put("tabarani_awsat", 9491);
-		//map.put("tabarani_mujam_kabir", 13644);
 		//map.put("taleeqat_hisaan", 7447);
 		//map.put("tanbeeh_ghafileen", 929);
 		//map.put("zuhd_ahmad", 2379);
 		//map.put("zuhd_dawud", 502);
-		//map.put("zuhd_mubarak", 2070);
 		//map.put("zuhd_wakee", 539);
-		//map.put("bayhaqi_kubra", 21946);
+		
+		// irwa ghaleel: 2597, lots missing!
 
 		for (String key: map.keySet())
 		{
