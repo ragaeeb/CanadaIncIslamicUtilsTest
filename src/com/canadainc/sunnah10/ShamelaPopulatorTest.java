@@ -79,7 +79,7 @@ public class ShamelaPopulatorTest
 		//map.put("nasai_vowels", 5758);
 		//map.put("tirmidhi_no_vowels", 3954);
 		//map.put("tirmidhi_vowels", 3956);
-		//map.put("abudawud_no_vowels", 5273);
+		map.put("abudawud_no_vowels", 5273);
 
 		for (String key: map.keySet())
 		{
